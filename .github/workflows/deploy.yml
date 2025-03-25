@@ -20,9 +20,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install --ignore-scripts --no-optional
+          npm install
           # 如果使用yarn，请使用下面这行替代
-          # yarn install --frozen-lockfile --ignore-optional
+          # yarn install --frozen-lockfile
 
       - name: Build VuePress site
         run: npm run docs:build
