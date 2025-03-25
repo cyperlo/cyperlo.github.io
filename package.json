@@ -10,7 +10,6 @@
     "@vuepress/plugin-back-to-top": "^1.9.10",
     "@vuepress/plugin-google-analytics": "^1.9.10",
     "@vuepress/plugin-medium-zoom": "^1.9.10",
-    "fsevents": "^2.3.3",
     "vuepress": "^1.9.10",
     "vuepress-plugin-baidu-autopush": "^1.0.1",
     "vuepress-plugin-feed": "^0.1.9",

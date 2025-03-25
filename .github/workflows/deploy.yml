@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install --omit=optional
+          npm install --ignore-scripts --no-optional
           # 如果使用yarn，请使用下面这行替代
           # yarn install --frozen-lockfile --ignore-optional
 
