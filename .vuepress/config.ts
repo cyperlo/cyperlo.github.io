@@ -2,7 +2,6 @@ import { defineConfig } from "vuepress/config";
 import navbar from "./navbar";
 import sidebar from "./sidebar";
 import footer from "./footer";
-import extraSideBar from "./extraSideBar";
 
 const author = "cyperlo";
 const domain = "https://cyperlo.github.io";
@@ -121,8 +120,8 @@ export default defineConfig({
     lastUpdated: "最近更新",
 
     // GitHub 仓库位置
-    repo: "liyupi/codefather",
-    docsBranch: "master",
+    repo: "cyperlo/cyperlo.github.io",
+    docsBranch: "main",
 
     // 编辑链接
     editLinks: true,
@@ -131,7 +130,5 @@ export default defineConfig({
     // @ts-ignore
     // 底部版权信息
     footer,
-    // 额外右侧边栏
-    extraSideBar,
   },
 });
