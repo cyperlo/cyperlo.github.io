@@ -27,7 +27,7 @@ jobs:
       - name: Build VuePress site
         run: npm run docs:build
         env:
-          NODE_OPTIONS: '--openssl-legacy-provider --max_old_space_size=8192'
+          NODE_OPTIONS: '--max_old_space_size=8192'
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
