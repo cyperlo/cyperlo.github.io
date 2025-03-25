@@ -34,4 +34,5 @@ jobs:
         with:
           folder: .vuepress/dist # VuePress构建输出目录
           branch: gh-pages # 部署到的分支
-          clean: true # 自动清理旧文件 
+          clean: true # 自动清理旧文件
+          token: ${{ secrets.GITHUB_TOKEN }} 
