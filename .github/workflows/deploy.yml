@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
+          npm install
           # 如果使用yarn，请使用下面这行替代
           # yarn install --frozen-lockfile
 
