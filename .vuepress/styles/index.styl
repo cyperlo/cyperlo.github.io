@@ -1,0 +1,32 @@
+// 调整内容区域最大宽度
+.theme-default-content:not(.custom) {
+  max-width: 1500px !important;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+}
+
+// 调整导航栏最大宽度
+.navbar .links {
+  max-width: 1200px !important;
+}
+
+// 调整首页内容宽度
+.home .features {
+  max-width: 1200px !important;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+// 调整代码块的显示
+.theme-default-content pre, 
+.theme-default-content pre[class*="language-"] {
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+// 优化移动端显示
+@media (max-width: 419px) {
+  .theme-default-content:not(.custom) {
+    padding: 1rem;
+  }
+} 

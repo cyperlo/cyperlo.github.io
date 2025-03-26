@@ -10,6 +10,7 @@ const tags = ["程序员", "编程", "计算机"];
 export default defineConfig({
   title: "cyperlo",
   description: "贴心的编程学习路线，全面的编程知识百科",
+  dest: "dist",
   head: [
     // 站点图标
     ["link", { rel: "icon", href: "/favicon.ico" }],
@@ -46,6 +47,10 @@ export default defineConfig({
     lineNumbers: true,
     // 支持 4 级以上的标题渲染
     extractHeaders: ["h2", "h3", "h4", "h5", "h6"],
+    extendMarkdown: md => {
+      // 使用更多的 markdown-it 插件!
+      md.set({ breaks: true })
+    }
   },
   // @ts-ignore
   plugins: [
