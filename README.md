@@ -1,4 +1,5 @@
 ---
+permalink: /
 home: true
 heroImage: /logo.png
 heroText: 陈海龙的知识库
