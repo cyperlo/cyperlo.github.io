@@ -46,10 +46,6 @@ export default defineConfig({
     lineNumbers: true,
     // 支持 4 级以上的标题渲染
     extractHeaders: ["h2", "h3", "h4", "h5", "h6"],
-    extendMarkdown: md => {
-      // 使用更多的 markdown-it 插件!
-      md.set({ breaks: true })
-    }
   },
   // @ts-ignore
   plugins: [
