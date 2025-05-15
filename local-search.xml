@@ -4,6 +4,61 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2025/05/15/Linux/Arch%20linux%20&amp;%20Hyperland/"/>
+    <url>/2025/05/15/Linux/Arch%20linux%20&amp;%20Hyperland/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Arch-Linux"><a href="#Arch-Linux" class="headerlink" title="Arch Linux"></a>Arch Linux</h1><h2 id="发行版选择"><a href="#发行版选择" class="headerlink" title="发行版选择"></a>发行版选择</h2><p>Arch Linux 有很多发行版，笔者采用 <strong>EndeavourOS</strong></p><p><strong>EndeavourOS</strong>是轻量级的，并且附带了最少数量的预装应用程序。一块近乎空白的画布，随时可以个性化。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装教程有很多，在这不做过多阐述，笔者推荐一个做启动盘的工具。<a href="https://www.ventoy.net/en/index.html">ventoy</a></p><h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>笔者最开始安装 Arch Linux 发行版，遇到了很多问题，尝试使用 Docker 安装 <code>V2rayA</code>，来走 <code>tun</code>代理，但是失败了，后面通过 <code>yay</code> 安装 <code>clash verge rev</code>来实现代理，下面展示安装步骤</p><h3 id="Clash-Verge-rev"><a href="#Clash-Verge-rev" class="headerlink" title="Clash Verge rev"></a>Clash Verge rev</h3><blockquote><p>由于安装 <code>clash verge rev</code>需要从 <code>github</code>下载，因此需要使用代理，笔者因为还有其他电脑，再其他电脑上开启了局域网代理</p></blockquote><p><img src="https://i.imgur.com/9RksGFa.png" alt="image-20250515100402352"></p><p>然后再 linux 上</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> https_proxy=http://xxx:7890 http_proxy=http://xxx:7890 all_proxy=socks5://xxx:7890<br></code></pre></td></tr></table></figure><p>安装 <code>clash verge rev</code></p><ol><li><p>paru</p><ol><li><p>安装 <code>paru</code></p><ol><li><p>在 <code>/etc/pacman.conf</code> 文件中写入下列内容。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">[archlinuxcn]<br>Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.hit.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://repo.huaweicloud.com/archlinuxcn/<span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure></li><li><p>在终端运行下列命令。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-key --lsign-key <span class="hljs-string">&quot;farseerfc@archlinux.org&quot;</span><br><span class="hljs-built_in">sudo</span> pacman -S archlinuxcn-keyring<br><span class="hljs-built_in">sudo</span> pacman -S paru<br></code></pre></td></tr></table></figure></li></ol></li><li><p>安装 <code>clash-verge-rev-bin</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">paru -S clash-verge-rev-bin<br></code></pre></td></tr></table></figure></li></ol></li><li><p><code>yay</code></p><ol><li><p>安装 <code>yay</code></p><ol><li><p>在 <code>/etc/pacman.conf</code> 文件中写入下列内容。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">[archlinuxcn]<br>Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.hit.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://repo.huaweicloud.com/archlinuxcn/<span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure></li><li><p>在终端运行下列命令。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-key --lsign-key <span class="hljs-string">&quot;farseerfc@archlinux.org&quot;</span><br><span class="hljs-built_in">sudo</span> pacman -S archlinuxcn-keyring<br><span class="hljs-built_in">sudo</span> pacman -S yay<br></code></pre></td></tr></table></figure></li></ol></li><li><p>安装 <code>clash-verge-rev-bin</code>。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S clash-verge-rev-bin<br></code></pre></td></tr></table></figure></li></ol></li></ol><h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ol><li><p>安装 docker、docker-compose</p></li><li><p>docker-compose.yaml</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">services:</span><br>  <span class="hljs-attr">v2ray:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">mzz2017/v2raya</span><br>    <span class="hljs-attr">network_mode:</span> <span class="hljs-string">host</span><br>    <span class="hljs-attr">container_name:</span> <span class="hljs-string">v2ray</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">privileged:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">~/v2ray/:/etc/v2raya</span><br></code></pre></td></tr></table></figure></li><li><p>运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker-compose up -d<br></code></pre></td></tr></table></figure></li><li><p>使用方法 </p><p>参考<a href="https://v2raya.org/docs/prologue/installation/docker/">v2rayA</a></p></li></ol><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><p><a href="https://clashverge.uk/install/install">Arch Linux 下载</a></p></li><li><p><a href="https://www.ventoy.net/en/index.html">ventoy</a></p></li><li><p><a href="https://v2raya.org/docs/prologue/installation/docker/">v2rayA</a></p></li></ul><h1 id="Hyperland"><a href="#Hyperland" class="headerlink" title="Hyperland"></a>Hyperland</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>笔者使用的是 <a href="https://github.com/HyDE-Project/HyDE">Hyde</a>，一键安装即可</p><h2 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h2><p>安装完成 Hyperland，可以开始处理中文输入法，笔者使用 <code>fcitx5</code></p><ol><li><p>安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S fctix5-im fcitx5-chinese-addons<br></code></pre></td></tr></table></figure></li><li><p>配置</p><ol><li><p>设置启动使用 <code>fctix5</code></p><p>在 <code>~/.config/hypr/hyprland.conf</code> 里添加，然后重启</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">exec-once=fcitx5 --replace -d<br></code></pre></td></tr></table></figure></li><li><p>wayland 在 electron 应用下可能会存在问题，需要设置 electron 参数</p><p>编辑 <code>~/.config/electron-flags.conf</code>，然后添加</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">--enable-features=UseOzonePlatform<br>--ozone-platform=wayland<br>--enable-wayland-ime<br></code></pre></td></tr></table></figure></li></ol></li></ol><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>笔者遇到的问题，每次开机可能都需要输入 wifi 密码，需要切换到 KDE 下，将 wifi 设置为所有账户可以连接，然后再切换到 Hyperland</p><h2 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://github.com/HyDE-Project/HyDE">Hyperland 配置</a></li><li><a href="https://www.bilibili.com/opus/817423840849166391">输入法安装</a></li><li></li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2025/05/12/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/%E9%92%89%E9%92%89%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    <url>/2025/05/12/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/%E9%92%89%E9%92%89%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="钉钉单点登录"><a href="#钉钉单点登录" class="headerlink" title="钉钉单点登录"></a>钉钉单点登录</h1><p>公司需要通过自建应用实现应用单点到我们系统，在此基础上通过创建钉钉应用，实现单点登录，以及发送消息等功能。</p><h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><pre><code class=" mermaid">sequenceDiagram    participant User as 用户    participant App as 应用系统    participant DingTalk as 钉钉    participant Backend as 后端服务    User-&gt;&gt;App: 访问登录页    App-&gt;&gt;DingTalk: 跳转钉钉扫码登录页面    User-&gt;&gt;DingTalk: 使用钉钉扫码授权    DingTalk--&gt;&gt;App: 回调授权码（auth_code）    App-&gt;&gt;Backend: 携带 auth_code 请求登录    Backend-&gt;&gt;DingTalk: 使用 auth_code 请求用户信息    DingTalk--&gt;&gt;Backend: 返回用户信息（userId、unionId等）    Backend--&gt;&gt;App: 返回登录成功状态 + 用户信息    App--&gt;&gt;User: 登录成功，进入系统</code></pre><h3 id="1-创建自定义应用"><a href="#1-创建自定义应用" class="headerlink" title="1. 创建自定义应用"></a>1. 创建自定义应用</h3><blockquote><p>需要拥有开发者或则管理员权限 </p><p>钉钉开放平台:<a href="https://open-dev.dingtalk.com/fe/app?hash=%23/corp/app#/corp/app">https://open-dev.dingtalk.com/fe/app?hash=%23%2Fcorp%2Fapp#/corp/app</a></p></blockquote><p>钉钉开放平台-&gt;创建应用</p><p><img src="https://i.imgur.com/vsLHIv9.png" alt="image-20250512154727832"></p><p><img src="https://i.imgur.com/gzK6JzV.png" alt="image-20250512154756148"></p><h3 id="2-给应用申请权限"><a href="#2-给应用申请权限" class="headerlink" title="2. 给应用申请权限"></a>2. 给应用申请权限</h3><p>点击刚创建的应用-&gt;权限管理<br><img src="https://i.imgur.com/WV5HakS.png" alt="image-20250512154853116"></p><p>申请权限列表为：</p><ol><li>Contact.User.Read</li><li>fieldEmail</li><li>qyapi_get_member</li><li>qyapi_get_omp_sso_userinfo</li><li>open_app_api_base</li><li>api_get_member_by_mobile</li></ol><p>应该这几个就行了，可能实际会有变化</p><p>输入框中输入上述code点击申请（已申请按钮会变成移除权限）</p><h3 id="3-添加网页应用能力"><a href="#3-添加网页应用能力" class="headerlink" title="3. 添加网页应用能力"></a>3. 添加网页应用能力</h3><h3 id="4-添加网页应用能力"><a href="#4-添加网页应用能力" class="headerlink" title="4. 添加网页应用能力"></a>4. 添加网页应用能力</h3><p>填写网页地址，地址为：<a href="https://wiki.chenhailong.com/workBench?in=dingtalk&orgId=%E6%9C%BA%E6%9E%84%E5%8F%B7id">https://wiki.chenhailong.com/workBench?in=dingtalk&amp;orgId=机构号id</a></p><p><img src="https://i.imgur.com/QH53eiR.png" alt="image-20250512154955250"></p><p><img src="https://i.imgur.com/GEGmnP1.png" alt="image-20250512155042874"></p><h3 id="5-分享设置"><a href="#5-分享设置" class="headerlink" title="5. 分享设置"></a>5. 分享设置</h3><blockquote><p>域名为：<a href="https://wiki.chenhailong.com/">https://wiki.chenhailong.com</a></p></blockquote><p>在分享设置中设置域名（表示当前应用对那些域名可见）</p><p><img src="https://i.imgur.com/oaUFFCZ.png" alt="image-20250512155257515"></p><h3 id="6-发送消息"><a href="#6-发送消息" class="headerlink" title="6. 发送消息"></a>6. 发送消息</h3><p>需要提供 appID 和 corpID</p><ul><li><p>appID<br><img src="https://i.imgur.com/173rw26.png" alt="image-20250512155440848"></p></li><li><p>corpID</p><p><img src="https://i.imgur.com/vayv9wE.png" alt="image-20250512155513766"></p></li></ul><h1 id="单点登录方案"><a href="#单点登录方案" class="headerlink" title="单点登录方案"></a>单点登录方案</h1><h2 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h2><ol><li><p>应用创建配置网页应用携带了 <code>in=dingtalk&amp;orgId=chenhailong</code></p><ol><li><code>dingtalk</code>: 表示从dingtalk 平台进行登录，业务前端如果识别到当前未处于登录态，需要调用后端接口 <code>oauth_uri</code> 来进行跳转</li><li><code>orgId</code>: 多租户时使用</li></ol></li><li><p>调用 <code>oauth_uri</code>接口，返回钉钉的一个跳转页面，然后进行跳转</p></li><li><p>钉钉确认登录之后会调用后台接口 <code>call_back</code>，然后拿到用户信息</p></li><li><p>前提： 需要在后台数据库中存放租户下的钉钉配置，后续是需要使用的</p></li></ol>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>flag</title>
+    <link href="/2025/05/09/Golang/%E5%B8%B8%E7%94%A8%E5%BA%93/flag/"/>
+    <url>/2025/05/09/Golang/%E5%B8%B8%E7%94%A8%E5%BA%93/flag/</url>
+    
+    <content type="html"><![CDATA[<h1 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>Golang</category>
+      
+      <category>常用库</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Golang</tag>
+      
+      <tag>常用库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Spring 常用扩展点</title>
     <link href="/2025/05/09/Java/Spring/Spring%20%E5%B8%B8%E7%94%A8%E6%89%A9%E5%B1%95%E7%82%B9/"/>
     <url>/2025/05/09/Java/Spring/Spring%20%E5%B8%B8%E7%94%A8%E6%89%A9%E5%B1%95%E7%82%B9/</url>
@@ -23,35 +78,6 @@
     <tags>
       
       <tag>Spring</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>flag</title>
-    <link href="/2025/05/09/Golang/%E5%B8%B8%E7%94%A8%E5%BA%93/flag/"/>
-    <url>/2025/05/09/Golang/%E5%B8%B8%E7%94%A8%E5%BA%93/flag/</url>
-    
-    <content type="html"><![CDATA[<h1 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>flag</code>用于解析命令行选项。有过类 Unix 系统使用经验的童鞋对命令行选项应该不陌生。例如命令<code>ls -al</code>列出当前目录下所有文件和目录的详细信息，其中<code>-al</code>就是命令行选项。</p><p>命令行选项在实际开发中很常用，特别是在写工具的时候。</p><ul><li>指定配置文件的路径，如<code>redis-server ./redis.conf</code>以当前目录下的配置文件<code>redis.conf</code>启动 Redis 服务器；</li><li>自定义某些参数，如<code>python -m SimpleHTTPServer 8080</code>启动一个 HTTP 服务器，监听 8080 端口。如果不指定，则默认监听 8000 端口。</li></ul><h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><p>学习一个库的第一步当然是使用它。我们先看看<code>flag</code>库的基本使用：</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>  <span class="hljs-string">&quot;fmt&quot;</span><br>  <span class="hljs-string">&quot;flag&quot;</span><br>)<br><br><span class="hljs-keyword">var</span> (<br>  intflag <span class="hljs-type">int</span><br>  boolflag <span class="hljs-type">bool</span><br>  stringflag <span class="hljs-type">string</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> &#123;<br>  flag.IntVar(&amp;intflag, <span class="hljs-string">&quot;intflag&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;int flag value&quot;</span>)<br>  flag.BoolVar(&amp;boolflag, <span class="hljs-string">&quot;boolflag&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;bool flag value&quot;</span>)<br>  flag.StringVar(&amp;stringflag, <span class="hljs-string">&quot;stringflag&quot;</span>, <span class="hljs-string">&quot;default&quot;</span>, <span class="hljs-string">&quot;string flag value&quot;</span>)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>  flag.Parse()<br><br>  fmt.Println(<span class="hljs-string">&quot;int flag:&quot;</span>, intflag)<br>  fmt.Println(<span class="hljs-string">&quot;bool flag:&quot;</span>, boolflag)<br>  fmt.Println(<span class="hljs-string">&quot;string flag:&quot;</span>, stringflag)<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>Golang</category>
-      
-      <category>常用库</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Golang</tag>
-      
-      <tag>常用库</tag>
       
     </tags>
     
