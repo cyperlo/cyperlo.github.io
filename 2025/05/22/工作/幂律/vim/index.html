@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Vim背景介绍，公司开发使用主要使用的是 Golang，很多小伙伴会使用 LazyVim进行开发，因此在公司我也尝试自己配置了一个出来。 下面是一些debug配置： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cyperlo">
+<meta property="og:url" content="https://cyperlo.github.io/2025/05/22/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/vim/index.html">
+<meta property="og:site_name" content="cyperlo">
+<meta property="og:description" content="Vim背景介绍，公司开发使用主要使用的是 Golang，很多小伙伴会使用 LazyVim进行开发，因此在公司我也尝试自己配置了一个出来。 下面是一些debug配置： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-22T05:33:26.232Z">
+<meta property="article:modified_time" content="2025-05-22T05:36:59.986Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>cyperlo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cyperlo.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cyperlo&#39;s wiki</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>Golang</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Golang/%E8%BF%9B%E9%98%B6%E8%AE%AD%E7%BB%83%E8%90%A5/" target="_self">
+                    
+                    <span>进阶训练营</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Golang/%E5%B8%B8%E7%94%A8%E5%BA%93/" target="_self">
+                    
+                    <span>常用库</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <span>Java</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Java/%E9%9D%A2%E8%AF%95/" target="_self">
+                    
+                    <span>面试</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Java/Spring/" target="_self">
+                    
+                    <span>Spring</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-22 13:33" pubdate>
+          2025年5月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h1><p>背景介绍，公司开发使用主要使用的是 Golang，很多小伙伴会使用 <code>LazyVim</code>进行开发，因此在公司我也尝试自己配置了一个出来。</p>
+<p>下面是一些<code>debug</code>配置：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">return</span> &#123;<br>  &#123; <span class="hljs-string">&quot;nvim-neotest/nvim-nio&quot;</span> &#125;,<br>  &#123;<br>    <span class="hljs-string">&quot;mfussenegger/nvim-dap&quot;</span>,<br><br>    dependencies = &#123;<br><br>      <span class="hljs-comment">-- fancy UI for the debugger</span><br>      &#123;<br>        <span class="hljs-string">&quot;rcarriga/nvim-dap-ui&quot;</span>,<br>      <span class="hljs-comment">-- stylua: ignore</span><br>      keys = &#123;<br>        &#123; <span class="hljs-string">&quot;&lt;leader&gt;du&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dapui&quot;</span>).toggle(&#123; &#125;) <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Dap UI&quot;</span> &#125;,<br>        &#123; <span class="hljs-string">&quot;&lt;leader&gt;de&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dapui&quot;</span>).eval() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Eval&quot;</span>, mode = &#123;<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;v&quot;</span>&#125; &#125;,<br>      &#125;,<br>        opts = &#123;&#125;,<br>        <span class="hljs-built_in">config</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_, opts)</span></span><br>          <span class="hljs-comment">-- setup dap config by VsCode launch.json file</span><br>          <span class="hljs-comment">-- require(&quot;dap.ext.vscode&quot;).load_launchjs()</span><br>          <span class="hljs-keyword">local</span> dap = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>)<br>          <span class="hljs-keyword">local</span> dapui = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dapui&quot;</span>)<br>          dapui.setup(opts)<br>          dap.listeners.after.event_initialized[<span class="hljs-string">&quot;dapui_config&quot;</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span><br>            dapui.<span class="hljs-built_in">open</span>(&#123;&#125;)<br>          <span class="hljs-keyword">end</span><br>          dap.listeners.before.event_terminated[<span class="hljs-string">&quot;dapui_config&quot;</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span><br>            dapui.<span class="hljs-built_in">close</span>(&#123;&#125;)<br>          <span class="hljs-keyword">end</span><br>          dap.listeners.before.event_exited[<span class="hljs-string">&quot;dapui_config&quot;</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span><br>            dapui.<span class="hljs-built_in">close</span>(&#123;&#125;)<br>          <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span>,<br>      &#125;,<br><br>      <span class="hljs-comment">-- virtual text for the debugger</span><br>      &#123;<br>        <span class="hljs-string">&quot;theHamsta/nvim-dap-virtual-text&quot;</span>,<br>        opts = &#123;&#125;,<br>      &#125;,<br><br>      <span class="hljs-comment">-- which key integration</span><br>      &#123;<br>        <span class="hljs-string">&quot;folke/which-key.nvim&quot;</span>,<br>        optional = <span class="hljs-literal">true</span>,<br>        opts = &#123;<br>          defaults = &#123;<br>            [<span class="hljs-string">&quot;&lt;leader&gt;d&quot;</span>] = &#123; name = <span class="hljs-string">&quot;+debug&quot;</span> &#125;,<br>          &#125;,<br>        &#125;,<br>      &#125;,<br><br>      <span class="hljs-comment">-- mason.nvim integration</span><br>      &#123;<br>        <span class="hljs-string">&quot;jay-babu/mason-nvim-dap.nvim&quot;</span>,<br>        dependencies = <span class="hljs-string">&quot;mason.nvim&quot;</span>,<br>        cmd = &#123; <span class="hljs-string">&quot;DapInstall&quot;</span>, <span class="hljs-string">&quot;DapUninstall&quot;</span> &#125;,<br>        opts = &#123;<br>          <span class="hljs-comment">-- Makes a best effort to setup the various debuggers with</span><br>          <span class="hljs-comment">-- reasonable debug configurations</span><br>          automatic_installation = <span class="hljs-literal">true</span>,<br><br>          <span class="hljs-comment">-- You can provide additional configuration to the handlers,</span><br>          <span class="hljs-comment">-- see mason-nvim-dap README for more information</span><br>          handlers = &#123;&#125;,<br><br>          <span class="hljs-comment">-- You&#x27;ll need to check that you have the required things installed</span><br>          <span class="hljs-comment">-- online, please don&#x27;t ask me how to install them :)</span><br>          ensure_installed = &#123;<br>            <span class="hljs-comment">-- Update this to ensure that you have the debuggers for the langs you want</span><br>          &#125;,<br>        &#125;,<br>      &#125;,<br>    &#125;,<br><br>  <span class="hljs-comment">-- stylua: ignore</span><br>  keys = &#123;<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dB&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).set_breakpoint(vim.fn.<span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;Breakpoint condition: &#x27;</span>)) <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Breakpoint Condition&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;db&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).toggle_breakpoint() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Toggle Breakpoint&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dc&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).continue() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Continue&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;da&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).continue(&#123; before = get_args &#125;) <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Run with Args&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dC&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).run_to_cursor() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Run to Cursor&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dg&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).goto_() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Go to line (no execute)&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;di&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).step_into() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Step Into&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dj&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).down() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Down&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dk&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).up() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Up&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dl&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).run_last() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Run Last&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;do&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).step_out() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Step Out&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dO&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).step_over() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Step Over&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dp&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).pause() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Pause&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dr&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).repl.toggle() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Toggle REPL&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;ds&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).session() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Session&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dt&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap&quot;</span>).terminate() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Terminate&quot;</span> &#125;,<br>    &#123; <span class="hljs-string">&quot;&lt;leader&gt;dw&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dap.ui.widgets&quot;</span>).hover() <span class="hljs-keyword">end</span>, desc = <span class="hljs-string">&quot;Widgets&quot;</span> &#125;,<br>  &#125;,<br><br>    <span class="hljs-built_in">config</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span><br>      <span class="hljs-keyword">local</span> Config = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;lazyvim.config&quot;</span>)<br>      vim.api.nvim_set_hl(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;DapStoppedLine&quot;</span>, &#123; default = <span class="hljs-literal">true</span>, link = <span class="hljs-string">&quot;Visual&quot;</span> &#125;)<br><br>      <span class="hljs-keyword">for</span> name, sign <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(Config.icons.dap) <span class="hljs-keyword">do</span><br>        sign = <span class="hljs-built_in">type</span>(sign) == <span class="hljs-string">&quot;table&quot;</span> <span class="hljs-keyword">and</span> sign <span class="hljs-keyword">or</span> &#123; sign &#125;<br>        vim.fn.sign_define(<br>          <span class="hljs-string">&quot;Dap&quot;</span> .. name,<br>          &#123; text = sign[<span class="hljs-number">1</span>], texthl = sign[<span class="hljs-number">2</span>] <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;DiagnosticInfo&quot;</span>, linehl = sign[<span class="hljs-number">3</span>], numhl = sign[<span class="hljs-number">3</span>] &#125;<br>        )<br>      <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span>,<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">require(&quot;dap-go&quot;).setup(&#123;</span><br>  <span class="hljs-string">--</span> <span class="hljs-string">Additional</span> <span class="hljs-string">dap</span> <span class="hljs-string">configurations</span> <span class="hljs-string">can</span> <span class="hljs-string">be</span> <span class="hljs-string">added.</span><br>  <span class="hljs-string">--</span> <span class="hljs-string">dap_configurations</span> <span class="hljs-string">accepts</span> <span class="hljs-string">a</span> <span class="hljs-string">list</span> <span class="hljs-string">of</span> <span class="hljs-string">tables</span> <span class="hljs-string">where</span> <span class="hljs-string">each</span> <span class="hljs-string">entry</span><br>  <span class="hljs-string">dap_configurations</span> <span class="hljs-string">=</span> &#123;<br>    &#123;<br>      <span class="hljs-string">type</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;go&quot;</span>,<br>      <span class="hljs-string">name</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;MeflowServer&quot;</span>,<br>      <span class="hljs-string">request</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;launch&quot;</span>,<br>      <span class="hljs-string">program</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;./cmd/server/main.go&quot;</span>,<br>    &#125;,<br>    &#123;<br>      <span class="hljs-string">type</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;go&quot;</span>,<br>      <span class="hljs-string">name</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;MeflowJob&quot;</span>,<br>      <span class="hljs-string">request</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;launch&quot;</span>,<br>      <span class="hljs-string">program</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;./cmd/job/main.go&quot;</span>,<br>    &#125;,<br>    &#123;<br>      <span class="hljs-string">type</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;go&quot;</span>,<br>      <span class="hljs-string">name</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;MeflowGRPC&quot;</span>,<br>      <span class="hljs-string">request</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;launch&quot;</span>,<br>      <span class="hljs-string">program</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;./cmd/grpc/main.go&quot;</span>,<br>    &#125;,<br>    &#123;<br>      <span class="hljs-string">type</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;go&quot;</span>,<br>      <span class="hljs-string">name</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;MeflowMigrate&quot;</span>,<br>      <span class="hljs-string">request</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;launch&quot;</span>,<br>      <span class="hljs-string">program</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;./cmd/migrate/main.go&quot;</span>,<br>    &#125;,<br>    &#123;<br>      <span class="hljs-string">type</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;go&quot;</span>,<br>      <span class="hljs-string">name</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;Integhub&quot;</span>,<br>      <span class="hljs-string">request</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;launch&quot;</span>,<br>      <span class="hljs-string">program</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;./cmd/server/main.go&quot;</span>,<br>    &#125;,<br>  &#125;<span class="hljs-string">,</span> <span class="hljs-string">--</span> <span class="hljs-attr">represents a dap configuration. For more details do:</span><br>  <span class="hljs-string">--</span> <span class="hljs-string">:help</span> <span class="hljs-string">dap-configuration</span><br><br>  <span class="hljs-string">--</span> <span class="hljs-string">delve</span> <span class="hljs-string">configurations</span><br>  <span class="hljs-string">delve</span> <span class="hljs-string">=</span> &#123;<br>    <span class="hljs-string">--</span> <span class="hljs-string">the</span> <span class="hljs-string">path</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">executable</span> <span class="hljs-string">dlv</span> <span class="hljs-string">which</span> <span class="hljs-string">will</span> <span class="hljs-string">be</span> <span class="hljs-string">used</span> <span class="hljs-string">for</span> <span class="hljs-string">debugging.</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">by</span> <span class="hljs-string">default</span>, <span class="hljs-string">this</span> <span class="hljs-string">is</span> <span class="hljs-string">the</span> <span class="hljs-string">&quot;dlv&quot;</span> <span class="hljs-string">executable</span> <span class="hljs-string">on</span> <span class="hljs-string">your</span> <span class="hljs-string">PATH.</span><br>    <span class="hljs-string">path</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;dlv&quot;</span>,<br>    <span class="hljs-string">--</span> <span class="hljs-string">time</span> <span class="hljs-string">to</span> <span class="hljs-string">wait</span> <span class="hljs-string">for</span> <span class="hljs-string">delve</span> <span class="hljs-string">to</span> <span class="hljs-string">initialize</span> <span class="hljs-string">the</span> <span class="hljs-string">debug</span> <span class="hljs-string">session.</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">default</span> <span class="hljs-string">to</span> <span class="hljs-number">20</span> <span class="hljs-string">seconds</span><br>    <span class="hljs-string">initialize_timeout_sec</span> <span class="hljs-string">=</span> <span class="hljs-number">20</span>,<br>    <span class="hljs-string">--</span> <span class="hljs-string">a</span> <span class="hljs-string">string</span> <span class="hljs-string">that</span> <span class="hljs-string">defines</span> <span class="hljs-string">the</span> <span class="hljs-string">port</span> <span class="hljs-string">to</span> <span class="hljs-string">start</span> <span class="hljs-string">delve</span> <span class="hljs-string">debugger.</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">default</span> <span class="hljs-string">to</span> <span class="hljs-string">string</span> <span class="hljs-string">&quot;$&#123;port&#125;&quot;</span> <span class="hljs-string">which</span> <span class="hljs-string">instructs</span> <span class="hljs-string">nvim-dap</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">to</span> <span class="hljs-string">start</span> <span class="hljs-string">the</span> <span class="hljs-string">process</span> <span class="hljs-string">in</span> <span class="hljs-string">a</span> <span class="hljs-string">random</span> <span class="hljs-string">available</span> <span class="hljs-string">port</span><br>    <span class="hljs-string">port</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;$&#123;port&#125;&quot;</span>,<br>    <span class="hljs-string">--</span> <span class="hljs-string">additional</span> <span class="hljs-string">args</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">to</span> <span class="hljs-string">dlv</span><br>    <span class="hljs-string">args</span> <span class="hljs-string">=</span> &#123;&#125;,<br>    <span class="hljs-string">--</span> <span class="hljs-string">the</span> <span class="hljs-string">build</span> <span class="hljs-string">flags</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">passed</span> <span class="hljs-string">to</span> <span class="hljs-string">delve.</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">defaults</span> <span class="hljs-string">to</span> <span class="hljs-string">empty</span> <span class="hljs-string">string</span>, <span class="hljs-string">but</span> <span class="hljs-string">can</span> <span class="hljs-string">be</span> <span class="hljs-string">used</span> <span class="hljs-string">to</span> <span class="hljs-string">provide</span> <span class="hljs-string">flags</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">such</span> <span class="hljs-string">as</span> <span class="hljs-string">&quot;-tags=unit&quot;</span> <span class="hljs-string">to</span> <span class="hljs-string">make</span> <span class="hljs-string">sure</span> <span class="hljs-string">the</span> <span class="hljs-string">test</span> <span class="hljs-string">suite</span> <span class="hljs-string">is</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">compiled</span> <span class="hljs-string">during</span> <span class="hljs-string">debugging</span>, <span class="hljs-string">for</span> <span class="hljs-string">example.</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">passing</span> <span class="hljs-string">build</span> <span class="hljs-string">flags</span> <span class="hljs-string">using</span> <span class="hljs-string">args</span> <span class="hljs-string">is</span> <span class="hljs-string">ineffective</span>, <span class="hljs-string">as</span> <span class="hljs-string">those</span> <span class="hljs-string">are</span><br>    <span class="hljs-string">--</span> <span class="hljs-string">ignored</span> <span class="hljs-string">by</span> <span class="hljs-string">delve</span> <span class="hljs-string">in</span> <span class="hljs-string">dap</span> <span class="hljs-string">mode.</span><br>    <span class="hljs-string">build_flags</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;&quot;</span>,<br>  &#125;<span class="hljs-string">,</span><br><span class="hljs-string">&#125;)</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;context&quot;</span><br>	<span class="hljs-string">&quot;errors&quot;</span><br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;log/slog&quot;</span><br><br>	<span class="hljs-string">&quot;github.com/traefik/yaegi/interp&quot;</span><br>	<span class="hljs-string">&quot;github.com/traefik/yaegi/stdlib&quot;</span><br><br>	<span class="hljs-string">&quot;powerlaw.ai/ae/integhub/pkg/param&quot;</span><br>	<span class="hljs-string">&quot;powerlaw.ai/ae/integhub/runtime/yaegi&quot;</span>. <span class="hljs-comment">// 导入包</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">code2Runnable</span><span class="hljs-params">(code <span class="hljs-type">string</span>)</span></span> (runFunc, <span class="hljs-type">error</span>) &#123;<br>	i := interp.New(interp.Options&#123;&#125;)<br>	<span class="hljs-keyword">if</span> err := loadLibs(i); err != <span class="hljs-literal">nil</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;failed to load libs: %w&quot;</span>, err)<br>	&#125;<br><br>	_, err := i.Eval(code)<br>	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;failed to eval code: %w&quot;</span>, err)<br>	&#125;<br><br>	v, err := i.Eval(<span class="hljs-string">&quot;goapp.Run&quot;</span>)<br>	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;failed to get DemoGoApp: %w&quot;</span>, err)<br>	&#125;<br>	slog.Debug(<span class="hljs-string">&quot;app loaded&quot;</span>, <span class="hljs-string">&quot;app&quot;</span>, v)<br><br>	rf, ok := v.Interface().(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-keyword">interface</span>&#123;&#125;)</span></span> (<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-keyword">interface</span>&#123;&#125;, <span class="hljs-type">error</span>))<br>	<span class="hljs-keyword">if</span> !ok &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, ErrSignatureMismatch<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> rf, <span class="hljs-literal">nil</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">loadLibs</span><span class="hljs-params">(i *interp.Interpreter)</span></span> <span class="hljs-type">error</span> &#123;<br>	<span class="hljs-keyword">if</span> err := i.Use(stdlib.Symbols); err != <span class="hljs-literal">nil</span> &#123;<br>		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;failed to use stdlib: %w&quot;</span>, err)<br>	&#125;<br>	<span class="hljs-keyword">if</span> err := i.Use(yaegi.Symbols); err != <span class="hljs-literal">nil</span> &#123;<br>		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;failed to use plibs: %w&quot;</span>, err)<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://cyperlo.github.io/2025/05/22/工作/幂律/vim/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/09/Golang/%E5%B8%B8%E7%94%A8%E5%BA%93/flag/" title="flag">
+                        <span class="hidden-mobile">flag</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://cyperlo.github.io/2025/05/22/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/vim/';
+          this.page.identifier = '/2025/05/22/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/vim/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
