@@ -19,23 +19,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Arch Linux发行版选择Arch Linux 有很多发行版，笔者采用 EndeavourOS EndeavourOS是轻量级的，并且附带了最少数量的预装应用程序。一块近乎空白的画布，随时可以个性化。 安装安装教程有很多，在这不做过多阐述，笔者推荐一个做启动盘的工具。ventoy 代理笔者最开始安装 Arch Linux 发行版，遇到了很多问题，尝试使用 Docker 安装 V2rayA，来走">
+    <meta name="description" content="Centos7下 Golang 环境搭建yum 安装 【不推荐】 用yum指令安装缺点是：不是最新版  1yum install golang  使用二进制文件安装标准官网：https:&#x2F;&#x2F;golang.org&#x2F; 需要墙镜像官网：https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F; 【国内推荐】  下载文件 1wget https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F;go1.23.0.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Arch Linux &amp; Hyperland">
-<meta property="og:url" content="https://cyperlo.github.io/2024/05/15/Linux/Arch%20linux%20&%20Hyperland/index.html">
+<meta property="og:title" content="Centos7下 Golang 环境搭建">
+<meta property="og:url" content="https://cyperlo.github.io/2025/07/14/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Centos%207%20%E4%B8%8B%20golang%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="cyperlo">
-<meta property="og:description" content="Arch Linux发行版选择Arch Linux 有很多发行版，笔者采用 EndeavourOS EndeavourOS是轻量级的，并且附带了最少数量的预装应用程序。一块近乎空白的画布，随时可以个性化。 安装安装教程有很多，在这不做过多阐述，笔者推荐一个做启动盘的工具。ventoy 代理笔者最开始安装 Arch Linux 发行版，遇到了很多问题，尝试使用 Docker 安装 V2rayA，来走">
+<meta property="og:description" content="Centos7下 Golang 环境搭建yum 安装 【不推荐】 用yum指令安装缺点是：不是最新版  1yum install golang  使用二进制文件安装标准官网：https:&#x2F;&#x2F;golang.org&#x2F; 需要墙镜像官网：https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F; 【国内推荐】  下载文件 1wget https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F;go1.23.0.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.imgur.com/9RksGFa.png">
-<meta property="article:published_time" content="2024-05-15T02:37:00.000Z">
-<meta property="article:modified_time" content="2025-05-15T07:29:11.437Z">
+<meta property="article:published_time" content="2025-07-14T01:18:39.000Z">
+<meta property="article:modified_time" content="2025-07-14T13:11:05.332Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Centos 7">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i.imgur.com/9RksGFa.png">
   
   
   
-  <title>Arch Linux &amp; Hyperland - cyperlo</title>
+  <title>Centos7下 Golang 环境搭建 - cyperlo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -265,7 +266,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Arch Linux &amp; Hyperland"></span>
+            <span id="subtitle" data-typed-text="Centos7下 Golang 环境搭建"></span>
           
         </div>
 
@@ -276,8 +277,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-15 10:37" pubdate>
-          2024年5月15日 上午
+        <time datetime="2025-07-14 09:18" pubdate>
+          2025年7月14日 上午
         </time>
       </span>
     
@@ -288,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          551 字
+          216 字
         
       </span>
     
@@ -299,7 +300,7 @@
         
         
         
-          5 分钟
+          2 分钟
         
       </span>
     
@@ -336,100 +337,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Arch Linux &amp; Hyperland</h1>
+            <h1 id="seo-header">Centos7下 Golang 环境搭建</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Arch-Linux"><a href="#Arch-Linux" class="headerlink" title="Arch Linux"></a>Arch Linux</h1><h2 id="发行版选择"><a href="#发行版选择" class="headerlink" title="发行版选择"></a>发行版选择</h2><p>Arch Linux 有很多发行版，笔者采用 <strong>EndeavourOS</strong></p>
-<p><strong>EndeavourOS</strong>是轻量级的，并且附带了最少数量的预装应用程序。一块近乎空白的画布，随时可以个性化。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装教程有很多，在这不做过多阐述，笔者推荐一个做启动盘的工具。<a target="_blank" rel="noopener" href="https://www.ventoy.net/en/index.html">ventoy</a></p>
-<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>笔者最开始安装 Arch Linux 发行版，遇到了很多问题，尝试使用 Docker 安装 <code>V2rayA</code>，来走 <code>tun</code>代理，但是失败了，后面通过 <code>yay</code> 安装 <code>clash verge rev</code>来实现代理，下面展示安装步骤</p>
-<h3 id="Clash-Verge-rev"><a href="#Clash-Verge-rev" class="headerlink" title="Clash Verge rev"></a>Clash Verge rev</h3><blockquote>
-<p>由于安装 <code>clash verge rev</code>需要从 <code>github</code>下载，因此需要使用代理，笔者因为还有其他电脑，再其他电脑上开启了局域网代理</p>
-</blockquote>
-<p><img src="https://i.imgur.com/9RksGFa.png" srcset="/img/loading.gif" lazyload alt="image-20250515100402352"></p>
-<p>然后再 linux 上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> https_proxy=http://xxx:7890 http_proxy=http://xxx:7890 all_proxy=socks5://xxx:7890<br></code></pre></td></tr></table></figure>
+                <h1 id="Centos7下-Golang-环境搭建"><a href="#Centos7下-Golang-环境搭建" class="headerlink" title="Centos7下 Golang 环境搭建"></a>Centos7下 Golang 环境搭建</h1><h2 id="yum-安装-【不推荐】"><a href="#yum-安装-【不推荐】" class="headerlink" title="yum 安装 【不推荐】"></a>yum 安装 【不推荐】</h2><ol>
+<li>用yum指令安装缺点是：不是最新版</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum install golang<br></code></pre></td></tr></table></figure>
 
-<p>安装 <code>clash verge rev</code></p>
+<h2 id="使用二进制文件安装"><a href="#使用二进制文件安装" class="headerlink" title="使用二进制文件安装"></a>使用二进制文件安装</h2><p>标准官网：<a target="_blank" rel="noopener" href="https://golang.org/">https://golang.org/</a> 需要墙<br>镜像官网：<a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a> 【国内推荐】</p>
 <ol>
-<li><p>paru</p>
-<ol>
-<li><p>安装 <code>paru</code></p>
-<ol>
-<li><p>在 <code>/etc/pacman.conf</code> 文件中写入下列内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">[archlinuxcn]<br>Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.hit.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://repo.huaweicloud.com/archlinuxcn/<span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>在终端运行下列命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-key --lsign-key <span class="hljs-string">&quot;farseerfc@archlinux.org&quot;</span><br><span class="hljs-built_in">sudo</span> pacman -S archlinuxcn-keyring<br><span class="hljs-built_in">sudo</span> pacman -S paru<br></code></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>安装 <code>clash-verge-rev-bin</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">paru -S clash-verge-rev-bin<br></code></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p><code>yay</code></p>
-<ol>
-<li><p>安装 <code>yay</code></p>
-<ol>
-<li><p>在 <code>/etc/pacman.conf</code> 文件中写入下列内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">[archlinuxcn]<br>Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://mirrors.hit.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br>Server = https://repo.huaweicloud.com/archlinuxcn/<span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>在终端运行下列命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-key --lsign-key <span class="hljs-string">&quot;farseerfc@archlinux.org&quot;</span><br><span class="hljs-built_in">sudo</span> pacman -S archlinuxcn-keyring<br><span class="hljs-built_in">sudo</span> pacman -S yay<br></code></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>安装 <code>clash-verge-rev-bin</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S clash-verge-rev-bin<br></code></pre></td></tr></table></figure></li>
-</ol>
+<li><p>下载文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://golang.google.cn/dl/go1.23.0.linux-amd64.tar.gz<br></code></pre></td></tr></table></figure></li>
+<li><p>解压文件到 &#x2F;usr&#x2F;local<br>  【重要】如果之前已经安装过go的版本，先清空下go下面src，不然可能会报一些previous declaration at &#x2F;usr&#x2F;local&#x2F;go&#x2F;src&#x2F;runtime&#x2F;internal&#x2F;atomic&#x2F;atomic_amd64.go:16:24的错误</p>
 </li>
 </ol>
-<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ol>
-<li><p>安装 docker、docker-compose</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -rf /usr/local/go<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>解压 go 包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zxf go1.17.linux-amd64.tar.gz -C /usr/local<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>docker-compose.yaml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">services:</span><br>  <span class="hljs-attr">v2ray:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">mzz2017/v2raya</span><br>    <span class="hljs-attr">network_mode:</span> <span class="hljs-string">host</span><br>    <span class="hljs-attr">container_name:</span> <span class="hljs-string">v2ray</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">privileged:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">~/v2ray/:/etc/v2raya</span><br></code></pre></td></tr></table></figure>
+<li><p>配置环境变量，vim 命令编辑 &#x2F;etc&#x2F;profile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/profile<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker-compose up -d<br></code></pre></td></tr></table></figure>
+<li><p>在 <code>/etc/profile</code>文件末尾添加以下配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#golang config</span><br><span class="hljs-built_in">export</span> GOROOT=/usr/local/go <br><span class="hljs-built_in">export</span> GOPATH=/data/gopath<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$GOROOT</span>/bin:<span class="hljs-variable">$GOPATH</span>/bin<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>使用方法 </p>
-<p>参考<a target="_blank" rel="noopener" href="https://v2raya.org/docs/prologue/installation/docker/">v2rayA</a></p>
+<li><p>创建 &#x2F;data&#x2F;gopath 文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /data/gopath<br></code></pre></td></tr></table></figure>
 </li>
+<li><p><code>source /etc/profile</code></p>
+</li>
+<li><p>设置 <code>golang</code>代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go <span class="hljs-built_in">env</span> -w GOPROXY=https://goproxy.cn,direct<br></code></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://clashverge.uk/install/install">Arch Linux 下载</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.ventoy.net/en/index.html">ventoy</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://v2raya.org/docs/prologue/installation/docker/">v2rayA</a></p>
-</li>
-</ul>
-<h1 id="Hyperland"><a href="#Hyperland" class="headerlink" title="Hyperland"></a>Hyperland</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>笔者使用的是 <a target="_blank" rel="noopener" href="https://github.com/HyDE-Project/HyDE">Hyde</a>，一键安装即可</p>
-<h2 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h2><p>安装完成 Hyperland，可以开始处理中文输入法，笔者使用 <code>fcitx5</code></p>
-<ol>
-<li><p>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S fctix5-im fcitx5-chinese-addons<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>配置</p>
-<ol>
-<li><p>设置启动使用 <code>fctix5</code></p>
-<p>在 <code>~/.config/hypr/hyprland.conf</code> 里添加，然后重启</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">exec-once=fcitx5 --replace -d<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>wayland 在 electron 应用下可能会存在问题，需要设置 electron 参数</p>
-<p>编辑 <code>~/.config/electron-flags.conf</code>，然后添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">--enable-features=UseOzonePlatform<br>--ozone-platform=wayland<br>--enable-wayland-ime<br></code></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>笔者遇到的问题，每次开机可能都需要输入 wifi 密码，需要切换到 KDE 下，将 wifi 设置为所有账户可以连接，然后再切换到 Hyperland</p>
-<h2 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/HyDE-Project/HyDE">Hyperland 配置</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/opus/817423840849166391">输入法安装</a></li>
-<li></li>
-</ul>
 
                 
               </div>
@@ -438,41 +381,17 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Arch/" class="category-chain-item">Arch</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Arch/Linux/" class="category-chain-item">Linux</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Arch/Linux/Hyperland/" class="category-chain-item">Hyperland</a>
-  
-  
-
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
+        <a href="/tags/Golang/" class="print-no-link">#Golang</a>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/Centos-7/" class="print-no-link">#Centos 7</a>
+      
     </div>
-  
   
 </div>
 
@@ -482,8 +401,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Arch Linux &amp; Hyperland</div>
-      <div>https://cyperlo.github.io/2024/05/15/Linux/Arch linux &amp; Hyperland/</div>
+      <div>Centos7下 Golang 环境搭建</div>
+      <div>https://cyperlo.github.io/2025/07/14/环境搭建/Centos 7 下 golang 环境搭建/</div>
     </div>
     <div class="license-meta">
       
@@ -495,7 +414,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月15日</div>
+          <div>2025年7月14日</div>
         </div>
       
       
@@ -527,18 +446,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/12/Golang/%E8%BF%9B%E9%98%B6%E8%AE%AD%E7%BB%83%E8%90%A5/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/" title="微服务架构">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">微服务架构</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/15/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/%E9%92%89%E9%92%89%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" title="钉钉单点登录">
-                        <span class="hidden-mobile">钉钉单点登录</span>
+                      <a href="/2025/07/07/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/vim/" title="Vim">
+                        <span class="hidden-mobile">Vim</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -558,8 +471,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://cyperlo.github.io/2024/05/15/Linux/Arch%20linux%20&amp;%20Hyperland/';
-          this.page.identifier = '/2024/05/15/Linux/Arch%20linux%20&amp;%20Hyperland/';
+          this.page.url = 'https://cyperlo.github.io/2025/07/14/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Centos%207%20%E4%B8%8B%20golang%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/';
+          this.page.identifier = '/2025/07/14/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Centos%207%20%E4%B8%8B%20golang%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
