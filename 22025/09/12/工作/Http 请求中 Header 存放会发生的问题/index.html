@@ -19,24 +19,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Centos7下 Golang 环境搭建yum 安装 【不推荐】 用yum指令安装缺点是：不是最新版  1yum install golang  使用二进制文件安装标准官网：https:&#x2F;&#x2F;golang.org&#x2F; 需要墙镜像官网：https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F; 【国内推荐】  下载文件 1wget https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F;go1.23.0.">
+    <meta name="description" content="Http 请求中 Header 存放中文会发生的问题背景：遇到了一个场景，现在请求打到网关，然后网关中有一个过滤器，过滤器会向请求中的header存放一个类似于 X-User-Data字段，然后值是一个json字符串，然后将请求转发到另一台服务器，另一台服务器去解析这个json字符串，但此时出现了一个意外的情况，解析之后json字符串中的中文会变成???，然后排查了很多情况，因为也有序列化的定制，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos7下 Golang 环境搭建">
-<meta property="og:url" content="https://cyperlo.github.io/2025/07/14/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Centos%207%20%E4%B8%8B%20golang%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:title" content="Http 请求中 Header 存放中文会发生的问题">
+<meta property="og:url" content="https://cyperlo.github.io/22025/09/12/%E5%B7%A5%E4%BD%9C/Http%20%E8%AF%B7%E6%B1%82%E4%B8%AD%20Header%20%E5%AD%98%E6%94%BE%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="cyperlo">
-<meta property="og:description" content="Centos7下 Golang 环境搭建yum 安装 【不推荐】 用yum指令安装缺点是：不是最新版  1yum install golang  使用二进制文件安装标准官网：https:&#x2F;&#x2F;golang.org&#x2F; 需要墙镜像官网：https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F; 【国内推荐】  下载文件 1wget https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F;go1.23.0.">
+<meta property="og:description" content="Http 请求中 Header 存放中文会发生的问题背景：遇到了一个场景，现在请求打到网关，然后网关中有一个过滤器，过滤器会向请求中的header存放一个类似于 X-User-Data字段，然后值是一个json字符串，然后将请求转发到另一台服务器，另一台服务器去解析这个json字符串，但此时出现了一个意外的情况，解析之后json字符串中的中文会变成???，然后排查了很多情况，因为也有序列化的定制，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-07-14T01:18:39.000Z">
-<meta property="article:modified_time" content="2025-07-14T13:11:05.332Z">
+<meta property="article:published_time" content="+022025-09-12T12:29:37.000Z">
+<meta property="article:modified_time" content="2025-09-12T12:46:48.544Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Golang">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Centos 7">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Centos7下 Golang 环境搭建 - cyperlo</title>
+  <title>Http 请求中 Header 存放中文会发生的问题 - cyperlo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -266,7 +263,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Centos7下 Golang 环境搭建"></span>
+            <span id="subtitle" data-typed-text="Http 请求中 Header 存放中文会发生的问题"></span>
           
         </div>
 
@@ -277,8 +274,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-07-14 09:18" pubdate>
-          2025年7月14日 上午
+        <time datetime="22025-09-12 20:29" pubdate>
+          22025年9月12日 晚上
         </time>
       </span>
     
@@ -289,7 +286,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          216 字
+          733 字
         
       </span>
     
@@ -300,7 +297,7 @@
         
         
         
-          2 分钟
+          7 分钟
         
       </span>
     
@@ -337,41 +334,51 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Centos7下 Golang 环境搭建</h1>
+            <h1 id="seo-header">Http 请求中 Header 存放中文会发生的问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Centos7下-Golang-环境搭建"><a href="#Centos7下-Golang-环境搭建" class="headerlink" title="Centos7下 Golang 环境搭建"></a>Centos7下 Golang 环境搭建</h1><h2 id="yum-安装-【不推荐】"><a href="#yum-安装-【不推荐】" class="headerlink" title="yum 安装 【不推荐】"></a>yum 安装 【不推荐】</h2><ol>
-<li>用yum指令安装缺点是：不是最新版</li>
+                <h1 id="Http-请求中-Header-存放中文会发生的问题"><a href="#Http-请求中-Header-存放中文会发生的问题" class="headerlink" title="Http 请求中 Header 存放中文会发生的问题"></a>Http 请求中 Header 存放中文会发生的问题</h1><p>背景：遇到了一个场景，现在请求打到网关，然后网关中有一个过滤器，过滤器会向请求中的<code>header</code>存放一个类似于 <code>X-User-Data</code>字段，然后值是一个<code>json</code>字符串，然后将请求转发到另一台服务器，另一台服务器去解析这个json字符串，但此时出现了一个意外的情况，解析之后<code>json</code>字符串中的中文会变成<code>???</code>，然后排查了很多情况，因为也有序列化的定制，最后逐一排查没有问题，发现是因为 <code>header</code>中存放的问题。</p>
+<blockquote>
+<p>其实笔者很难理解为啥要把用户信息变成json字符串存放到header中</p>
+</blockquote>
+<h2 id="为什么会出现这种情况？"><a href="#为什么会出现这种情况？" class="headerlink" title="为什么会出现这种情况？"></a>为什么会出现这种情况？</h2><h3 id="1-HTTP-Header-的历史规范"><a href="#1-HTTP-Header-的历史规范" class="headerlink" title="1. HTTP Header 的历史规范"></a>1. HTTP Header 的历史规范</h3><ol>
+<li><p>早期 HTTP&#x2F;1.1 的 RFC 2616（1999 年）要求 Header 值必须是 <strong>ISO-8859-1 (Latin-1)</strong>，即单字节字符集，只能表示西欧字符。</p>
+</li>
+<li><p>后来 RFC 7230（2014 年）放宽了要求，允许 Header 使用 ASCII，但仍然没有正式规定 UTF-8。</p>
+</li>
+<li><p>到现在的 RFC 9110（HTTP&#x2F;1.1 最新规范，2022 年）里才明确：Header 的语义值可以是 <strong>Unicode（UTF-8）</strong>，但实现上仍要考虑兼容性。</p>
+</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum install golang<br></code></pre></td></tr></table></figure>
-
-<h2 id="使用二进制文件安装"><a href="#使用二进制文件安装" class="headerlink" title="使用二进制文件安装"></a>使用二进制文件安装</h2><p>标准官网：<a target="_blank" rel="noopener" href="https://golang.org/">https://golang.org/</a> 需要墙<br>镜像官网：<a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a> 【国内推荐】</p>
+<h3 id="2-一些服务器仍然不支持-“UTF-8”"><a href="#2-一些服务器仍然不支持-“UTF-8”" class="headerlink" title="2. 一些服务器仍然不支持 “UTF-8”"></a>2. 一些服务器仍然不支持 “UTF-8”</h3><p><strong>老旧的 Web 服务器</strong></p>
+<ul>
+<li>例如某些版本的 Apache、Tomcat、IIS，仍然默认用 ISO-8859-1 解析 Header。</li>
+<li>如果你传中文 UTF-8（多字节），它会逐字节解码 → 乱码。</li>
+</ul>
+<p><strong>反向代理 &#x2F; API 网关</strong></p>
+<ul>
+<li>比如 Nginx 默认认为 Header 是 ASCII，如果配置不对，转发时可能丢掉或截断非 ASCII。</li>
+<li>某些企业级 API 网关（如 Zuul、Kong）也会拒绝包含非 ASCII 的 Header。</li>
+</ul>
+<p><strong>编程语言库</strong></p>
+<ul>
+<li>Go 的 <code>net/http</code> 是支持 UTF-8 Header 的（不会报错）</li>
+<li>但 Java 的 <code>HttpURLConnection</code> 或一些老的 Servlet 容器可能会用 ISO-8859-1 处理，中文就会乱码。</li>
+</ul>
+<h3 id="3-兼容性问题"><a href="#3-兼容性问题" class="headerlink" title="3. 兼容性问题"></a>3. 兼容性问题</h3><p>不同的服务和中间件处理方式不一样：</p>
+<ul>
+<li><strong>浏览器 &#x2F; 常见 HTTP 客户端库</strong>：有些会自动尝试转义，有些会直接报错。</li>
+<li><strong>Nginx &#x2F; Apache</strong>：可能会拒绝请求（<code>400 Bad Request</code>）或者把中文替换成 <code>?</code>。</li>
+<li><strong>反向代理 &#x2F; 网关（如 Kong、Zuul、Envoy）</strong>：可能会直接丢掉该 header，或者导致整个请求失败。</li>
+<li><strong>跨语言服务</strong>：比如后端是 Go，网关是 Java，某些语言解析时直接报错。</li>
+</ul>
+<h2 id="怎么解决？"><a href="#怎么解决？" class="headerlink" title="怎么解决？"></a>怎么解决？</h2><blockquote>
+<p>因为解决问题比较简单，笔者只提供思路</p>
+</blockquote>
 <ol>
-<li><p>下载文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://golang.google.cn/dl/go1.23.0.linux-amd64.tar.gz<br></code></pre></td></tr></table></figure></li>
-<li><p>解压文件到 &#x2F;usr&#x2F;local<br>  【重要】如果之前已经安装过go的版本，先清空下go下面src，不然可能会报一些previous declaration at &#x2F;usr&#x2F;local&#x2F;go&#x2F;src&#x2F;runtime&#x2F;internal&#x2F;atomic&#x2F;atomic_amd64.go:16:24的错误</p>
-</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -rf /usr/local/go<br></code></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>解压 go 包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zxf go1.17.linux-amd64.tar.gz -C /usr/local<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>配置环境变量，vim 命令编辑 &#x2F;etc&#x2F;profile</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/profile<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>/etc/profile</code>文件末尾添加以下配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#golang config</span><br><span class="hljs-built_in">export</span> GOROOT=/usr/local/go <br><span class="hljs-built_in">export</span> GOPATH=/data/gopath<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$GOROOT</span>/bin:<span class="hljs-variable">$GOPATH</span>/bin<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>创建 &#x2F;data&#x2F;gopath 文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /data/gopath<br></code></pre></td></tr></table></figure>
-</li>
-<li><p><code>source /etc/profile</code></p>
-</li>
-<li><p>设置 <code>golang</code>代理</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go <span class="hljs-built_in">env</span> -w GOPROXY=https://goproxy.cn,direct<br></code></pre></td></tr></table></figure></li>
+<li>在 <code>Header</code>中只存放<code>用户id</code>等关键信息，一方面是避免请求过大，导致请求性能降低，另一方面符合 <code>Http</code>规范，后续其他服务通过<code>用户id</code>等关键信息可以再次获取用户信息</li>
+<li>如果现在架构已经设计好了，已经没有办法修改了，现在可以采用把整个带中文的<code>json字符串</code>通过<code>BSER64</code>加密之后传输，跟<code>http</code>中<code>url</code>携带中文类似</li>
 </ol>
 
                 
@@ -381,17 +388,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Golang/" class="print-no-link">#Golang</a>
-      
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
-      
-        <a href="/tags/Centos-7/" class="print-no-link">#Centos 7</a>
-      
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C/" class="category-chain-item">经验</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BB%8F%E9%AA%8C/%E5%B7%A5%E4%BD%9C/" class="category-chain-item">工作</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
     </div>
+  
   
 </div>
 
@@ -401,8 +425,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Centos7下 Golang 环境搭建</div>
-      <div>https://cyperlo.github.io/2025/07/14/环境搭建/Centos 7 下 golang 环境搭建/</div>
+      <div>Http 请求中 Header 存放中文会发生的问题</div>
+      <div>https://cyperlo.github.io/22025/09/12/工作/Http 请求中 Header 存放会发生的问题/</div>
     </div>
     <div class="license-meta">
       
@@ -414,7 +438,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年7月14日</div>
+          <div>22025年9月12日</div>
         </div>
       
       
@@ -446,18 +470,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/22025/09/12/%E5%B7%A5%E4%BD%9C/Http%20%E8%AF%B7%E6%B1%82%E4%B8%AD%20Header%20%E5%AD%98%E6%94%BE%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E9%97%AE%E9%A2%98/" title="Http 请求中 Header 存放中文会发生的问题">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Http 请求中 Header 存放中文会发生的问题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/07/07/%E5%B7%A5%E4%BD%9C/%E5%B9%82%E5%BE%8B/vim/" title="Vim">
-                        <span class="hidden-mobile">Vim</span>
+                      <a href="/2025/07/14/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Centos%207%20%E4%B8%8B%20golang%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="Centos7下 Golang 环境搭建">
+                        <span class="hidden-mobile">Centos7下 Golang 环境搭建</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -477,8 +495,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://cyperlo.github.io/2025/07/14/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Centos%207%20%E4%B8%8B%20golang%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/';
-          this.page.identifier = '/2025/07/14/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Centos%207%20%E4%B8%8B%20golang%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/';
+          this.page.url = 'https://cyperlo.github.io/22025/09/12/%E5%B7%A5%E4%BD%9C/Http%20%E8%AF%B7%E6%B1%82%E4%B8%AD%20Header%20%E5%AD%98%E6%94%BE%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E9%97%AE%E9%A2%98/';
+          this.page.identifier = '/22025/09/12/%E5%B7%A5%E4%BD%9C/Http%20%E8%AF%B7%E6%B1%82%E4%B8%AD%20Header%20%E5%AD%98%E6%94%BE%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E9%97%AE%E9%A2%98/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
