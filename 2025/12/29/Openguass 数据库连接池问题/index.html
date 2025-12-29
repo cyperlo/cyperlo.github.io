@@ -19,25 +19,27 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="OpenGauss安装">
+    <meta name="description" content="Opengauss 数据库连接池问题公司生产环境数据库采用Opengauss数据库，最近出现了服务器内存暴涨，并且一直降不下去，基于此现状进行分析 环境信息服务器是arm架构的麒麟系统，数据库每个节点4C8G，主从三节点，然后使用 druid 做数据库连接池，druid配置如下 123456min-idle: 5initial-size: 5max-active: 20validation-que">
 <meta property="og:type" content="article">
-<meta property="og:title" content="opengauss">
-<meta property="og:url" content="https://cyperlo.github.io/2025/10/31/opengauss/index.html">
+<meta property="og:title" content="Opengauss 数据库连接池问题">
+<meta property="og:url" content="https://cyperlo.github.io/2025/12/29/Openguass%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="cyperlo">
-<meta property="og:description" content="OpenGauss安装">
+<meta property="og:description" content="Opengauss 数据库连接池问题公司生产环境数据库采用Opengauss数据库，最近出现了服务器内存暴涨，并且一直降不下去，基于此现状进行分析 环境信息服务器是arm架构的麒麟系统，数据库每个节点4C8G，主从三节点，然后使用 druid 做数据库连接池，druid配置如下 123456min-idle: 5initial-size: 5max-active: 20validation-que">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-31T06:45:18.000Z">
-<meta property="article:modified_time" content="2025-10-31T06:45:52.908Z">
+<meta property="article:published_time" content="2025-12-29T07:39:17.000Z">
+<meta property="article:modified_time" content="2025-12-29T13:20:17.405Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="数据库">
-<meta property="article:tag" content="OpenGauss">
+<meta property="article:tag" content="连接池">
+<meta property="article:tag" content="Opengauss">
+<meta property="article:tag" content="postgreSQL">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>opengauss - cyperlo</title>
+  <title>Opengauss 数据库连接池问题 - cyperlo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="opengauss"></span>
+            <span id="subtitle" data-typed-text="Opengauss 数据库连接池问题"></span>
           
         </div>
 
@@ -214,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-31 14:45" pubdate>
-          2025年10月31日 下午
+        <time datetime="2025-12-29 15:39" pubdate>
+          2025年12月29日 下午
         </time>
       </span>
     
@@ -226,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3 字
+          686 字
         
       </span>
     
@@ -237,7 +239,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -274,12 +276,58 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">opengauss</h1>
+            <h1 id="seo-header">Opengauss 数据库连接池问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="OpenGauss"><a href="#OpenGauss" class="headerlink" title="OpenGauss"></a>OpenGauss</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2>
+                <h1 id="Opengauss-数据库连接池问题"><a href="#Opengauss-数据库连接池问题" class="headerlink" title="Opengauss 数据库连接池问题"></a>Opengauss 数据库连接池问题</h1><p>公司生产环境数据库采用<code>Opengauss</code>数据库，最近出现了服务器内存暴涨，并且一直降不下去，基于此现状进行分析</p>
+<h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>服务器是arm架构的麒麟系统，数据库每个节点4C8G，主从三节点，然后使用 druid 做数据库连接池，druid配置如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">min-idle:</span> <span class="hljs-number">5</span><br><span class="hljs-attr">initial-size:</span> <span class="hljs-number">5</span><br><span class="hljs-attr">max-active:</span> <span class="hljs-number">20</span><br><span class="hljs-attr">validation-query:</span> <span class="hljs-string">SELECT</span> <span class="hljs-number">1</span><br><span class="hljs-attr">test-while-idle:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">min-evictable-idle-time-millis:</span> <span class="hljs-number">300000</span> <span class="hljs-comment"># 参考值</span><br></code></pre></td></tr></table></figure>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>当应用启动时，<code>druid</code>会初始化5个连接，并且最小存活5个连接，后端服务有70个pod，导致全部运行时会直接初始化210个连接，最大连接数可以达1400个。当使用连接的时候，连接会记录执行计划，会导致内存一直上涨（有上限的， 在SQL执行时，会将SQL进行预编译成PreparedStatement，比如 <code>SELECT * FROM TABLE WHERE id = ?</code>这种，不同传参其实执行计划是一个，所以是有上限）</p>
+<p>这种问题点就是因为每个pod还有定时任务，就会导致初始化的连接会一直释放不掉，然后pod数量也多</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><blockquote>
+<p>临时解决<br>按理来说，像这种情况，pod如此多的情况还使用一个数据库是一个不正常的现象，如果条件允许可以多申请点资源，因为连接不释放才是正常的</p>
+</blockquote>
+<p>为了解决连接一直占用的问题，我这边新增了几个<code>druid</code>配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">max-evictable-idle-time-millis:</span> <span class="hljs-number">1800000</span> <span class="hljs-comment"># 参考值</span><br><span class="hljs-attr">keepAlive:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<p>设置了<code>druid</code>中连接最大的空闲时间，当最大空闲时间达到就可以回收这个连接，使用<code>keepAlive</code>，可以保证连接存活，因为设置了<code>minIdle</code>，当回收了连接，<code>druid</code>会新建被回收连接的数量</p>
+<blockquote>
+<p>当连接使用了，最大空闲时间会被重置，直到重新达到最大空闲时间才会被回收</p>
+</blockquote>
+<h2 id="连接状态"><a href="#连接状态" class="headerlink" title="连接状态"></a>连接状态</h2><ol>
+<li>新建中</li>
+<li>Idle: 空闲可用</li>
+<li>Active</li>
+<li>回收中 </li>
+<li>已关闭</li>
+</ol>
+<h2 id="查询当前有多少链接"><a href="#查询当前有多少链接" class="headerlink" title="查询当前有多少链接"></a>查询当前有多少链接</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> pg_stat_activity;<br></code></pre></td></tr></table></figure>
+<p>关键字段：</p>
+<ol>
+<li>backend_start: 建立连接的时间</li>
+<li>usename: 连接使用人</li>
+</ol>
+<h2 id="JDBC-推荐配置"><a href="#JDBC-推荐配置" class="headerlink" title="JDBC 推荐配置"></a>JDBC 推荐配置</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:opengauss//host1:port1,host2:port2,host3:port3/db?currentSchema=public&amp;autoReconnect=true&amp;targetServerType=master&amp;forceTargetServerSlave=true</span><br></code></pre></td></tr></table></figure>
+<h2 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h2><p>我们数据库会有一层F5，原则上直接连接F5的ip其实也可以实现建立连接</p>
+<table>
+<thead>
+<tr>
+<th>连接信息</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用F5连接</td>
+<td>连接会自动与主库发生连接，当主从发生切换，等几分钟后会识别到，然后重新与主库建立连接</td>
+</tr>
+<tr>
+<td>指定多个连接信息</td>
+<td>同F5</td>
+</tr>
+</tbody></table>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>基于<code>Druid</code>其实能实现很多功能，包含初始化连接，通过<code>PreparedStatement</code>可以减少服务器内存</p>
+
                 
               </div>
             
@@ -287,41 +335,17 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/OpenGauss/" class="category-chain-item">OpenGauss</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="print-no-link">#数据库</a>
       
-        <a href="/tags/OpenGauss/" class="print-no-link">#OpenGauss</a>
+        <a href="/tags/%E8%BF%9E%E6%8E%A5%E6%B1%A0/" class="print-no-link">#连接池</a>
+      
+        <a href="/tags/Opengauss/" class="print-no-link">#Opengauss</a>
+      
+        <a href="/tags/postgreSQL/" class="print-no-link">#postgreSQL</a>
       
     </div>
   
@@ -333,8 +357,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>opengauss</div>
-      <div>https://cyperlo.github.io/2025/10/31/opengauss/</div>
+      <div>Opengauss 数据库连接池问题</div>
+      <div>https://cyperlo.github.io/2025/12/29/Openguass 数据库连接池问题/</div>
     </div>
     <div class="license-meta">
       
@@ -346,7 +370,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月31日</div>
+          <div>2025年12月29日</div>
         </div>
       
       
@@ -378,18 +402,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/19/%E7%99%BB%E5%BD%95%E8%AE%A4%E8%AF%81/" title="登录认证">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">登录认证</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/23/python/rag/" title="rag">
-                        <span class="hidden-mobile">rag</span>
+                      <a href="/2025/11/19/%E7%99%BB%E5%BD%95%E8%AE%A4%E8%AF%81/" title="登录认证">
+                        <span class="hidden-mobile">登录认证</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -409,8 +427,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://cyperlo.github.io/2025/10/31/opengauss/';
-          this.page.identifier = '/2025/10/31/opengauss/';
+          this.page.url = 'https://cyperlo.github.io/2025/12/29/Openguass%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%97%AE%E9%A2%98/';
+          this.page.identifier = '/2025/12/29/Openguass%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%97%AE%E9%A2%98/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
