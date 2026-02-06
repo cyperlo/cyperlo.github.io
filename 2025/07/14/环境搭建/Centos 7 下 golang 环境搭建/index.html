@@ -27,7 +27,7 @@
 <meta property="og:description" content="Centos7下 Golang 环境搭建yum 安装 【不推荐】 用yum指令安装缺点是：不是最新版  1yum install golang  使用二进制文件安装标准官网：https:&#x2F;&#x2F;golang.org&#x2F; 需要墙镜像官网：https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F; 【国内推荐】  下载文件 1wget https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F;go1.23.0.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-14T01:18:39.000Z">
-<meta property="article:modified_time" content="2025-07-14T13:11:05.332Z">
+<meta property="article:modified_time" content="2026-01-08T01:58:40.869Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Golang">
 <meta property="article:tag" content="Linux">
@@ -290,10 +290,8 @@
 <li><p>下载文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://golang.google.cn/dl/go1.23.0.linux-amd64.tar.gz<br></code></pre></td></tr></table></figure></li>
 <li><p>解压文件到 &#x2F;usr&#x2F;local<br>  【重要】如果之前已经安装过go的版本，先清空下go下面src，不然可能会报一些previous declaration at &#x2F;usr&#x2F;local&#x2F;go&#x2F;src&#x2F;runtime&#x2F;internal&#x2F;atomic&#x2F;atomic_amd64.go:16:24的错误</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -rf /usr/local/go	<br></code></pre></td></tr></table></figure>
 </li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -rf /usr/local/go<br></code></pre></td></tr></table></figure>
-<ol start="3">
 <li><p>解压 go 包</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zxf go1.17.linux-amd64.tar.gz -C /usr/local<br></code></pre></td></tr></table></figure>
 </li>
