@@ -123,19 +123,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2026/02/24/android/Readme/"/>
-    <url>/2026/02/24/android/Readme/</url>
-    
-    <content type="html"><![CDATA[<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs groovy">allprojects &#123;<br>    repositories &#123;<br>        maven &#123; url <span class="hljs-string">&#x27;https://maven.aliyun.com/repository/public&#x27;</span> &#125;<br>        maven &#123; url <span class="hljs-string">&#x27;https://maven.aliyun.com/repository/central&#x27;</span> &#125;<br>        maven &#123; url <span class="hljs-string">&#x27;https://maven.aliyun.com/repository/google&#x27;</span> &#125;<br>        maven &#123; url <span class="hljs-string">&#x27;https://maven.aliyun.com/repository/gradle-plugin&#x27;</span> &#125;<br><br>        mavenLocal()<br>        mavenCentral()<br>    &#125;<br>&#125;<br><br>settingsEvaluated &#123; settings -&gt;<br>    settings.pluginManagement &#123;<br>        repositories &#123;<br>            maven &#123; url <span class="hljs-string">&#x27;https://maven.aliyun.com/repository/gradle-plugin&#x27;</span> &#125;<br>            mavenCentral()<br>            gradlePluginPortal()<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Opengauss current_date 不准确</title>
     <link href="/2026/02/06/OpenGauss%20current_date%20%E4%B8%8D%E5%87%86%E7%A1%AE/"/>
     <url>/2026/02/06/OpenGauss%20current_date%20%E4%B8%8D%E5%87%86%E7%A1%AE/</url>
