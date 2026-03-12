@@ -136,13 +136,25 @@
   
   
   <entry>
-    <title></title>
+    <title>Opengauss current_date 不准确</title>
     <link href="/2026/02/06/OpenGauss%20current_date%20%E4%B8%8D%E5%87%86%E7%A1%AE/"/>
     <url>/2026/02/06/OpenGauss%20current_date%20%E4%B8%8D%E5%87%86%E7%A1%AE/</url>
     
-    <content type="html"><![CDATA[<p>title: Opengauss current_date 不准确<br>date: 2026-02-06 16:16:24<br>tags: [“数据库”,”bug”, “Opengauss”,”postgreSQL”]</p><h1 id="OpenGauss-Select-current-date-问题"><a href="#OpenGauss-Select-current-date-问题" class="headerlink" title="OpenGauss Select current_date 问题"></a>OpenGauss Select current_date 问题</h1><p>最近项目组使用 <code>java</code>加<code>opengauss</code>时，发现<code>select current_date</code>和<code>select current_timestamp</code>日期不一致，导致部分<code>sql</code>查询到的数据是有问题，因此项目组对这个问题进行了一个完整的分析，以下是两个出现问题的场景。</p><h2 id="1-在事务下修改系统时间"><a href="#1-在事务下修改系统时间" class="headerlink" title="1. 在事务下修改系统时间"></a>1. 在事务下修改系统时间</h2><p><img src="https://i.imgur.com/FNwv1oY.jpeg" alt="c7057098761a481a3b179145696e2728"></p><p>在事务未提交前查询时间，然后执行<code>current_date</code>时间是正常的，但是当开启事务，第一次获取的时间也是正确的，然后此时修改系统时间，再次查询日期还是之前的日期。</p><h2 id="2-开启prepare-并设置-plan-cache-mode-’force-generic-plan’"><a href="#2-开启prepare-并设置-plan-cache-mode-’force-generic-plan’" class="headerlink" title="2. 开启prepare 并设置 plan_cache_mode&#x3D;’force_generic_plan’;"></a>2. 开启prepare 并设置 plan_cache_mode&#x3D;’force_generic_plan’;</h2><p>这个行为是 <code>MyBatis</code>的默认行为，prepare预编译sql语句，会将编译的结果存储到服务器中，存储的结果跟连接是有关联关系的，当使用数据库连接池，前面的连接没有释放掉，并且执行过current_date，就会把这个结果存储下来，当后续再使用这个连接去查询日期，相当于直接从缓存拿到数据，此时数据并不是目前的时间点。</p><h2 id="3-结果分析"><a href="#3-结果分析" class="headerlink" title="3. 结果分析"></a>3. 结果分析</h2><p>目前opengauss 5.x版本都会有这个问题，当使用current_date，其实不一定会获取当前的时间，目前代码仓库也提到了这个问题，到目前为止是有一个提交，但是未合并</p><h2 id="4-参考文档"><a href="#4-参考文档" class="headerlink" title="4. 参考文档"></a>4. 参考文档</h2><ol><li><a href="https://gitcode.com/opengauss/openGauss-server/issues/2401">https://gitcode.com/opengauss/openGauss-server/issues/2401</a></li></ol><h2 id="5-解决办法"><a href="#5-解决办法" class="headerlink" title="5. 解决办法"></a>5. 解决办法</h2><ol><li>修改连接的配置，将 plan_cache_mode 值设置为auto</li><li>查询的时候动态参数，比如要获取某一天之前的数据，就可以把服务器今天的日期传到sql，而不是依靠数据库兜底</li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="OpenGauss-Select-current-date-问题"><a href="#OpenGauss-Select-current-date-问题" class="headerlink" title="OpenGauss Select current_date 问题"></a>OpenGauss Select current_date 问题</h1><p>最近项目组使用 <code>java</code>加<code>opengauss</code>时，发现<code>select current_date</code>和<code>select current_timestamp</code>日期不一致，导致部分<code>sql</code>查询到的数据是有问题，因此项目组对这个问题进行了一个完整的分析，以下是两个出现问题的场景。</p><h2 id="1-在事务下修改系统时间"><a href="#1-在事务下修改系统时间" class="headerlink" title="1. 在事务下修改系统时间"></a>1. 在事务下修改系统时间</h2><p><img src="https://i.imgur.com/FNwv1oY.jpeg" alt="c7057098761a481a3b179145696e2728"></p><p>在事务未提交前查询时间，然后执行<code>current_date</code>时间是正常的，但是当开启事务，第一次获取的时间也是正确的，然后此时修改系统时间，再次查询日期还是之前的日期。</p><h2 id="2-开启prepare-并设置-plan-cache-mode-’force-generic-plan’"><a href="#2-开启prepare-并设置-plan-cache-mode-’force-generic-plan’" class="headerlink" title="2. 开启prepare 并设置 plan_cache_mode&#x3D;’force_generic_plan’;"></a>2. 开启prepare 并设置 plan_cache_mode&#x3D;’force_generic_plan’;</h2><p>这个行为是 <code>MyBatis</code>的默认行为，prepare预编译sql语句，会将编译的结果存储到服务器中，存储的结果跟连接是有关联关系的，当使用数据库连接池，前面的连接没有释放掉，并且执行过current_date，就会把这个结果存储下来，当后续再使用这个连接去查询日期，相当于直接从缓存拿到数据，此时数据并不是目前的时间点。</p><h2 id="3-结果分析"><a href="#3-结果分析" class="headerlink" title="3. 结果分析"></a>3. 结果分析</h2><p>目前opengauss 5.x版本都会有这个问题，当使用current_date，其实不一定会获取当前的时间，目前代码仓库也提到了这个问题，到目前为止是有一个提交，但是未合并</p><h2 id="4-参考文档"><a href="#4-参考文档" class="headerlink" title="4. 参考文档"></a>4. 参考文档</h2><ol><li><a href="https://gitcode.com/opengauss/openGauss-server/issues/2401">https://gitcode.com/opengauss/openGauss-server/issues/2401</a></li></ol><h2 id="5-解决办法"><a href="#5-解决办法" class="headerlink" title="5. 解决办法"></a>5. 解决办法</h2><ol><li>修改连接的配置，将 plan_cache_mode 值设置为auto</li><li>查询的时候动态参数，比如要获取某一天之前的数据，就可以把服务器今天的日期传到sql，而不是依靠数据库兜底</li></ol>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>数据库</tag>
+      
+      <tag>Opengauss</tag>
+      
+      <tag>postgreSQL</tag>
+      
+      <tag>bug</tag>
+      
+    </tags>
     
   </entry>
   

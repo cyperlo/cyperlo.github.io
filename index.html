@@ -527,14 +527,14 @@
       <h2 class="index-header">
         
         <a href="/2026/02/06/OpenGauss%20current_date%20%E4%B8%8D%E5%87%86%E7%A1%AE/" target="_self">
-          
+          Opengauss current_date 不准确
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/02/06/OpenGauss%20current_date%20%E4%B8%8D%E5%87%86%E7%A1%AE/" target="_self">
         <div>
-          title: Opengauss current_date 不准确date: 2026-02-06 16:16:24tags: [“数据库”,”bug”, “Opengauss”,”postgreSQL”] OpenGauss Select current_date 问题最近项目组使用 java加opengauss时，发现select current_date和select current_tim
+          OpenGauss Select current_date 问题最近项目组使用 java加opengauss时，发现select current_date和select current_timestamp日期不一致，导致部分sql查询到的数据是有问题，因此项目组对这个问题进行了一个完整的分析，以下是两个出现问题的场景。 1. 在事务下修改系统时间 在事务未提交前查询时间，然后执行current_d
         </div>
       </a>
 
@@ -542,12 +542,25 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-02-06 16:14" pubdate>
+            <time datetime="2026-02-06 16:16" pubdate>
               2026-02-06
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
+            
+              <a href="/tags/Opengauss/">#Opengauss</a>
+            
+              <a href="/tags/postgreSQL/">#postgreSQL</a>
+            
+              <a href="/tags/bug/">#bug</a>
+            
+          </div>
         
       </div>
     </article>
