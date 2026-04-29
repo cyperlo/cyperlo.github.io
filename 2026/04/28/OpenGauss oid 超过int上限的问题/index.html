@@ -19,25 +19,29 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Jenkins 搭建Docker 搭建Jenkins 安装 Docker  安装 docker-compose  安装 Jenkins 123456789101112docker run -d \  --name jenkins \  --restart always \  -p 8082:8080 \  -p 50000:50000 \  -u root \  -v &#x2F;data&#x2F;jenkins:">
+    <meta name="description" content="OpenGauss oid 超过int上限的问题当时用Java连接openGauss数据库，执行“所有”查询，日志出现了 OID out of range报错，具体如下  然后针对这一现象，排查出现的原因。 背景我们生产环境的数据库oid大于了INTERGER.MAX_VAUE，执行部分查询会出现OID out of range报错，如果要复现这个问题，需要oid大于INTERGER.MAX_VA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jenkins">
-<meta property="og:url" content="https://cyperlo.github.io/2026/03/11/Jenkins%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:title" content="OpenGauss oid 超过int上限的问题">
+<meta property="og:url" content="https://cyperlo.github.io/2026/04/28/OpenGauss%20oid%20%E8%B6%85%E8%BF%87int%E4%B8%8A%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="cyperlo">
-<meta property="og:description" content="Jenkins 搭建Docker 搭建Jenkins 安装 Docker  安装 docker-compose  安装 Jenkins 123456789101112docker run -d \  --name jenkins \  --restart always \  -p 8082:8080 \  -p 50000:50000 \  -u root \  -v &#x2F;data&#x2F;jenkins:">
+<meta property="og:description" content="OpenGauss oid 超过int上限的问题当时用Java连接openGauss数据库，执行“所有”查询，日志出现了 OID out of range报错，具体如下  然后针对这一现象，排查出现的原因。 背景我们生产环境的数据库oid大于了INTERGER.MAX_VAUE，执行部分查询会出现OID out of range报错，如果要复现这个问题，需要oid大于INTERGER.MAX_VA">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-03-11T01:32:28.000Z">
-<meta property="article:modified_time" content="2026-03-11T01:34:52.392Z">
+<meta property="og:image" content="https://i.imgur.com/ycvLUOn.png">
+<meta property="article:published_time" content="2026-04-28T01:47:48.000Z">
+<meta property="article:modified_time" content="2026-04-29T03:16:12.086Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="运维">
-<meta property="article:tag" content="Jenkins">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="Opengauss">
+<meta property="article:tag" content="postgreSQL">
+<meta property="article:tag" content="bug">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/ycvLUOn.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Jenkins - cyperlo</title>
+  <title>OpenGauss oid 超过int上限的问题 - cyperlo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Jenkins"></span>
+            <span id="subtitle" data-typed-text="OpenGauss oid 超过int上限的问题"></span>
           
         </div>
 
@@ -214,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-11 09:32" pubdate>
-          2026年3月11日 上午
+        <time datetime="2026-04-28 09:47" pubdate>
+          2026年4月28日 上午
         </time>
       </span>
     
@@ -226,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          55 字
+          515 字
         
       </span>
     
@@ -237,7 +241,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -274,19 +278,31 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Jenkins</h1>
+            <h1 id="seo-header">OpenGauss oid 超过int上限的问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Jenkins-搭建"><a href="#Jenkins-搭建" class="headerlink" title="Jenkins 搭建"></a>Jenkins 搭建</h1><h2 id="Docker-搭建Jenkins"><a href="#Docker-搭建Jenkins" class="headerlink" title="Docker 搭建Jenkins"></a>Docker 搭建Jenkins</h2><ol>
-<li><p>安装 Docker</p>
-</li>
-<li><p>安装 <code>docker-compose</code></p>
-</li>
-<li><p>安装 Jenkins</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d \<br>  --name jenkins \<br>  --restart always \<br>  -p 8082:8080 \<br>  -p 50000:50000 \<br>  -u root \<br>  -v /data/jenkins:/var/jenkins_home \<br>  -v /var/run/docker.sock:/var/run/docker.sock \<br>  -v /usr/bin/docker:/usr/bin/docker \<br>  -v /usr/local/bin/docker-compose:/usr/local/bin/docker-compose \<br>  jenkins/jenkins:lts<br><br></code></pre></td></tr></table></figure></li>
-</ol>
+                <h1 id="OpenGauss-oid-超过int上限的问题"><a href="#OpenGauss-oid-超过int上限的问题" class="headerlink" title="OpenGauss oid 超过int上限的问题"></a>OpenGauss oid 超过int上限的问题</h1><p>当时用<code>Java</code>连接openGauss数据库，执行“所有”查询，日志出现了 <code>OID out of range</code>报错，具体如下</p>
+<p><img src="https://i.imgur.com/ycvLUOn.png" srcset="/img/loading.gif" lazyload alt="image-20260429105237361"></p>
+<p>然后针对这一现象，排查出现的原因。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们生产环境的数据库<code>oid</code>大于了<code>INTERGER.MAX_VAUE</code>，执行部分查询会出现<code>OID out of range</code>报错，如果要复现这个问题，需要<code>oid</code>大于<code>INTERGER.MAX_VALUE</code></p>
+<p>openGauss数据库版本为：5.0.2</p>
+<h2 id="测试数据库构造oid"><a href="#测试数据库构造oid" class="headerlink" title="测试数据库构造oid"></a>测试数据库构造<code>oid</code></h2><h3 id="使用欺骗法"><a href="#使用欺骗法" class="headerlink" title="使用欺骗法"></a>使用欺骗法</h3><blockquote>
+<p>修改表，使插入数据也可以消费一条oid</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create table</span> test(id <span class="hljs-type">int</span>);<br><br><span class="hljs-keyword">select</span> relname, relhasoids <span class="hljs-keyword">from</span> pg_class <span class="hljs-keyword">where</span> relname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;test&#x27;</span>;<br><br><span class="hljs-keyword">update</span> pg_class <span class="hljs-keyword">set</span> relhasoids <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;t&#x27;</span> <span class="hljs-keyword">where</span> relname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;test6&#x27;</span>;<br><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> pg_variable_info;<br><br><span class="hljs-keyword">insert into</span> test <span class="hljs-keyword">select</span> generate_series(<span class="hljs-number">1</span>, <span class="hljs-number">1000000</span>);<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> pg_variable_info;<br></code></pre></td></tr></table></figure>
+
+<p>大约一个小时就可以完成，可以写一个<code>shell</code>，循环执行插入语句</p>
+<h3 id="其他办法"><a href="#其他办法" class="headerlink" title="其他办法"></a>其他办法</h3><p>采用了其他许多办法，构造21亿的oid数据，要么花费时间比较长，要么中途会失败，还有的占用内存过大，推荐使用欺骗法</p>
+<h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><blockquote>
+<p>生产出现这个问题，基本上都是调用了ResultSetMetaData.getColumnTypeName，因此我本地复现也是调用了这个办法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.demo;<br><br><span class="hljs-keyword">import</span> java.sql.Connection;<br><span class="hljs-keyword">import</span> java.sql.DriverManager;<br><span class="hljs-keyword">import</span> java.sql.ResultSet;<br><span class="hljs-keyword">import</span> java.sql.ResultSetMetaData;<br><span class="hljs-keyword">import</span> java.sql.Statement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Application</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;select * from test&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;jdbc://postgresql://ip:5432/db&quot;</span>;<br>        String user=  <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, user, password)) &#123;<br>            <span class="hljs-type">Statement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> connection.createStatement();<br>            <span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span> statement.executeQuery(sql);<br>            <span class="hljs-type">ResultSetMetaData</span> <span class="hljs-variable">metaData</span> <span class="hljs-operator">=</span> resultSet.getMetaData();<br>            <span class="hljs-type">int</span> <span class="hljs-variable">metaDataColumnCount</span> <span class="hljs-operator">=</span> metaData.getColumnCount();<br><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= metaDataColumnCount; i++) &#123;<br>                System.out.println(metaData.getColumnName(i));<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>然后这个问题，前几次我们尝试都没有复现，表的<code>oid</code>也是大于<code>INTEGET.MAX_VALUE</code>，然后也是正常执行，后面我们去模拟了下生产环境的表的结构，然后测试了下，复现了，然后我查看表结构，发现了生产环境的表结构是<code>B</code>模式。然后我们又尝试把之前测试没有问题的表放到<code>B</code>模式下，也报错了。</p>
+<p>然后我们又尝试了多个驱动，包括huawei、postgres的，均成功复现。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p><code>Java</code>的驱动在连接<code>OpenGauss</code>数据库的<code>B</code>模式时，当表的<code>oid</code>大于<code>INTEGER.MAX_VALUE</code>就会报错。</p>
 
                 
               </div>
@@ -295,41 +311,17 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%BF%90%E7%BB%B4/" class="category-chain-item">运维</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E8%BF%90%E7%BB%B4/Jenkins/" class="category-chain-item">Jenkins</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%BF%90%E7%BB%B4/" class="print-no-link">#运维</a>
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="print-no-link">#数据库</a>
       
-        <a href="/tags/Jenkins/" class="print-no-link">#Jenkins</a>
+        <a href="/tags/Opengauss/" class="print-no-link">#Opengauss</a>
+      
+        <a href="/tags/postgreSQL/" class="print-no-link">#postgreSQL</a>
+      
+        <a href="/tags/bug/" class="print-no-link">#bug</a>
       
     </div>
   
@@ -341,8 +333,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Jenkins</div>
-      <div>https://cyperlo.github.io/2026/03/11/Jenkins搭建/</div>
+      <div>OpenGauss oid 超过int上限的问题</div>
+      <div>https://cyperlo.github.io/2026/04/28/OpenGauss oid 超过int上限的问题/</div>
     </div>
     <div class="license-meta">
       
@@ -354,7 +346,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年3月11日</div>
+          <div>2026年4月28日</div>
         </div>
       
       
@@ -386,18 +378,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/04/28/OpenGauss%20oid%20%E8%B6%85%E8%BF%87int%E4%B8%8A%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/" title="OpenGauss oid 超过int上限的问题">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OpenGauss oid 超过int上限的问题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/03/11/easytier/" title="Easytier">
-                        <span class="hidden-mobile">Easytier</span>
+                      <a href="/2026/03/11/Jenkins%E6%90%AD%E5%BB%BA/" title="Jenkins">
+                        <span class="hidden-mobile">Jenkins</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -417,8 +403,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://cyperlo.github.io/2026/03/11/Jenkins%E6%90%AD%E5%BB%BA/';
-          this.page.identifier = '/2026/03/11/Jenkins%E6%90%AD%E5%BB%BA/';
+          this.page.url = 'https://cyperlo.github.io/2026/04/28/OpenGauss%20oid%20%E8%B6%85%E8%BF%87int%E4%B8%8A%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/';
+          this.page.identifier = '/2026/04/28/OpenGauss%20oid%20%E8%B6%85%E8%BF%87int%E4%B8%8A%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
