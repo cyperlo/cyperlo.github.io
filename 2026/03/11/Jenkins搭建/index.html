@@ -27,7 +27,7 @@
 <meta property="og:description" content="Jenkins 搭建Docker 搭建Jenkins 安装 Docker  安装 docker-compose  安装 Jenkins 123456789101112docker run -d \  --name jenkins \  --restart always \  -p 8082:8080 \  -p 50000:50000 \  -u root \  -v &#x2F;data&#x2F;jenkins:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-11T01:32:28.000Z">
-<meta property="article:modified_time" content="2026-03-11T01:34:52.392Z">
+<meta property="article:modified_time" content="2026-05-07T07:56:44.355Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="运维">
 <meta property="article:tag" content="Jenkins">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          55 字
+          220 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -285,9 +285,23 @@
 <li><p>安装 <code>docker-compose</code></p>
 </li>
 <li><p>安装 Jenkins</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d \<br>  --name jenkins \<br>  --restart always \<br>  -p 8082:8080 \<br>  -p 50000:50000 \<br>  -u root \<br>  -v /data/jenkins:/var/jenkins_home \<br>  -v /var/run/docker.sock:/var/run/docker.sock \<br>  -v /usr/bin/docker:/usr/bin/docker \<br>  -v /usr/local/bin/docker-compose:/usr/local/bin/docker-compose \<br>  jenkins/jenkins:lts<br><br></code></pre></td></tr></table></figure></li>
-</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d \<br>  --name jenkins \<br>  --restart always \<br>  -p 8082:8080 \<br>  -p 50000:50000 \<br>  -u root \<br>  -v /data/jenkins:/var/jenkins_home \<br>  -v /var/run/docker.sock:/var/run/docker.sock \<br>  -v /usr/bin/docker:/usr/bin/docker \<br>  -v /usr/local/bin/docker-compose:/usr/local/bin/docker-compose \<br>  jenkins/jenkins:lts<br><br></code></pre></td></tr></table></figure>
 
+
+</li>
+<li><p>反向代理配置</p>
+<blockquote>
+<p>笔者使用了宝塔面板，想要的效果就是 bt.xxx.com 可以直接访问jenkins服务，使用自建jenkins同理</p>
+<p>配置文件位置为： include &#x2F;www&#x2F;server&#x2F;panel&#x2F;vhost&#x2F;nginx&#x2F;proxy&#x2F;你的域名&#x2F;*.conf;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /www/server/panel/vhost/nginx/proxy/你的域名<br>vim *.conf <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs conf">#PROXY-START/<br><br>location ^~ /<br>&#123;<br>    proxy_pass http://127.0.0.1:8082;<br>    proxy_redirect off;<br><br>    proxy_set_header Host $host;<br>    proxy_set_header X-Real-IP $remote_addr;<br>    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>    proxy_set_header X-Forwarded-Proto $scheme;<br>    proxy_set_header X-Forwarded-Host $host;<br>    proxy_set_header X-Forwared-Port $server_port;<br><br><br>    proxy_set_header REMOTE-HOST $remote_addr;<br>    proxy_set_header Upgrade $http_upgrade;<br>    proxy_set_header Connection $connection_upgrade;<br><br>    proxy_http_version 1.1;<br>    # proxy_hide_header Upgrade;<br><br>    add_header X-Cache $upstream_cache_status;<br><br>    #Set Nginx Cache<br><br><br>    set $static_fileAJqSSewO 0;<br>    if ( $uri ~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot; )<br>    &#123;<br>        set $static_fileAJqSSewO 1;<br>        expires 1m;<br>        &#125;<br>    if ( $static_fileAJqSSewO = 0 )<br>    &#123;<br>    add_header Cache-Control no-cache;<br>    &#125;<br>&#125;<br><br>#PROXY-END/<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h2><ol>
+<li>Pipeline: Stage View</li>
+</ol>
+<h2 id="添加凭证"><a href="#添加凭证" class="headerlink" title="添加凭证"></a>添加凭证</h2>
                 
               </div>
             
