@@ -1,0 +1,940 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="go-zero 学习路线（系列导读） 本文是本系列教程的总入口，建议先读这篇，再按顺序学习后续文章。系列目标：0 基础入门 → 中级水平（能独立开发、部署一个完整的 go-zero 微服务项目）  1. 系列概览本系列共 7 篇文章，以「用户服务」为贯穿案例，从环境搭建到生产部署形成完整闭环。全部基于 go-zero 最新稳定版本编写，所有代码示例均可在本地直接运行。    阶段 篇目 一句话总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-zero 学习路线（系列导读）">
+<meta property="og:url" content="https://cyperlo.github.io/2026/08/18/Golang/go-zero/go-zero%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/index.html">
+<meta property="og:site_name" content="cyperlo">
+<meta property="og:description" content="go-zero 学习路线（系列导读） 本文是本系列教程的总入口，建议先读这篇，再按顺序学习后续文章。系列目标：0 基础入门 → 中级水平（能独立开发、部署一个完整的 go-zero 微服务项目）  1. 系列概览本系列共 7 篇文章，以「用户服务」为贯穿案例，从环境搭建到生产部署形成完整闭环。全部基于 go-zero 最新稳定版本编写，所有代码示例均可在本地直接运行。    阶段 篇目 一句话总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-18T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-25T02:11:54.596Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="微服务">
+<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="go-zero">
+<meta property="article:tag" content="学习路线">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>go-zero 学习路线（系列导读） - cyperlo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cyperlo.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cyperlo&#39;s wiki</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="go-zero 学习路线（系列导读）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-18 09:00" pubdate>
+          2026年8月18日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">go-zero 学习路线（系列导读）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="go-zero-学习路线（系列导读）"><a href="#go-zero-学习路线（系列导读）" class="headerlink" title="go-zero 学习路线（系列导读）"></a>go-zero 学习路线（系列导读）</h1><blockquote>
+<p>本文是本系列教程的<strong>总入口</strong>，建议先读这篇，再按顺序学习后续文章。<br>系列目标：<strong>0 基础入门 → 中级水平</strong>（能独立开发、部署一个完整的 go-zero 微服务项目）</p>
+</blockquote>
+<h2 id="1-系列概览"><a href="#1-系列概览" class="headerlink" title="1. 系列概览"></a>1. 系列概览</h2><p>本系列共 <strong>7 篇文章</strong>，以「用户服务」为贯穿案例，从环境搭建到生产部署形成完整闭环。全部基于 go-zero 最新稳定版本编写，所有代码示例均可在本地直接运行。</p>
+<table>
+<thead>
+<tr>
+<th align="left">阶段</th>
+<th align="left">篇目</th>
+<th align="left">一句话总结</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">入门</td>
+<td align="left">第 1 篇</td>
+<td align="left">认识 go-zero，跑通第一个 API 服务</td>
+</tr>
+<tr>
+<td align="left">核心</td>
+<td align="left">第 2 篇</td>
+<td align="left">吃透 <code>.api</code> 语法，熟练使用 goctl 神器</td>
+</tr>
+<tr>
+<td align="left">核心</td>
+<td align="left">第 3 篇</td>
+<td align="left">实现完整的 JWT 用户认证与中间件</td>
+</tr>
+<tr>
+<td align="left">核心</td>
+<td align="left">第 4 篇</td>
+<td align="left">API + RPC 微服务拆分，etcd 服务发现</td>
+</tr>
+<tr>
+<td align="left">进阶</td>
+<td align="left">第 5 篇</td>
+<td align="left">数据模型与缓存一致性方案</td>
+</tr>
+<tr>
+<td align="left">进阶</td>
+<td align="left">第 6 篇</td>
+<td align="left">限流、熔断、链路追踪等治理能力</td>
+</tr>
+<tr>
+<td align="left">实战</td>
+<td align="left">第 7 篇</td>
+<td align="left">消息队列、任务调度、Docker&#x2F;K8s 部署</td>
+</tr>
+</tbody></table>
+<h2 id="2-推荐阅读顺序"><a href="#2-推荐阅读顺序" class="headerlink" title="2. 推荐阅读顺序"></a>2. 推荐阅读顺序</h2><h3 id="2-1-标准学习路线（推荐）⭐"><a href="#2-1-标准学习路线（推荐）⭐" class="headerlink" title="2.1 标准学习路线（推荐）⭐"></a>2.1 标准学习路线（推荐）⭐</h3><p><strong>必须严格按顺序阅读（有强依赖关系）：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs tap">第<span class="hljs-number"> 1 </span>篇：框架入门<br>   ↓ （掌握 go-zero 基本概念和项目结构）<br>第<span class="hljs-number"> 2 </span>篇：API 语法<br>   ↓ （.api 文件是所有 API 开发的基础）<br>第<span class="hljs-number"> 3 </span>篇：JWT 认证<br>   ↓ （实际业务必备，学会中间件机制）<br>第<span class="hljs-number"> 4 </span>篇：RPC 微服务<br>   ↓ （微服务拆分，etcd 服务发现）<br>第<span class="hljs-number"> 5 </span>篇：数据模型与缓存<br>   ↓ （数据库操作，缓存一致性）<br>第<span class="hljs-number"> 6 </span>篇：微服务治理<br>   ↓ （限流、熔断、链路追踪）<br>第<span class="hljs-number"> 7 </span>篇：部署实战<br>   ↓ （消息队列、任务调度、Docker/K8s）<br>✅ 完成学习<br></code></pre></td></tr></table></figure>
+
+<p><strong>时间安排：</strong> 每天 1-2 篇 + 动手实践，共 <strong>5-7 天</strong>达到中级水平</p>
+<h3 id="2-2-快速上手路线（3天速成）🚀"><a href="#2-2-快速上手路线（3天速成）🚀" class="headerlink" title="2.2 快速上手路线（3天速成）🚀"></a>2.2 快速上手路线（3天速成）🚀</h3><p>适合有其他框架经验，想快速了解 go-zero 的开发者：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs tap">Day 1: 第<span class="hljs-number"> 1 </span>篇 + 第<span class="hljs-number"> 2 </span>篇<br>       └─ 重点：跑通第一个服务 + 掌握 .api 语法<br><br>Day 2: 第<span class="hljs-number"> 3 </span>篇 + 第<span class="hljs-number"> 4 </span>篇<br>       └─ 重点：JWT 认证 + RPC 调用<br><br>Day 3: 第<span class="hljs-number"> 5 </span>篇<br>       └─ 重点：数据库操作 + 缓存<br><br>（第 6、7 篇可以在实际项目中遇到需求时再学习）<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-3-按需学习路线（灵活）🎯"><a href="#2-3-按需学习路线（灵活）🎯" class="headerlink" title="2.3 按需学习路线（灵活）🎯"></a>2.3 按需学习路线（灵活）🎯</h3><p>如果你有特定目标，可以按需跳读：</p>
+<table>
+<thead>
+<tr>
+<th align="left">学习目标</th>
+<th align="left">阅读路线</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">只做 HTTP API</td>
+<td align="left">1 → 2 → 3 → 5</td>
+<td align="left">跳过 RPC，专注单体应用</td>
+</tr>
+<tr>
+<td align="left">微服务架构</td>
+<td align="left">1 → 2 → 4 → 6</td>
+<td align="left">专注服务间通信和治理</td>
+</tr>
+<tr>
+<td align="left">数据库开发</td>
+<td align="left">1 → 2 → 5</td>
+<td align="left">快速上手 CRUD + 缓存</td>
+</tr>
+<tr>
+<td align="left">生产部署</td>
+<td align="left">1 → 7</td>
+<td align="left">了解部署相关知识</td>
+</tr>
+</tbody></table>
+<p><strong>⚠️ 注意：</strong> 无论选择哪种路线，第 1、2 篇都是<strong>必读</strong>基础！</p>
+<h3 id="2-4-学习路线图"><a href="#2-4-学习路线图" class="headerlink" title="2.4 学习路线图"></a>2.4 学习路线图</h3><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs nix">┌─────────────────────────────────────────────┐<br>│  阶段一：入门（第 <span class="hljs-number">1</span> 篇）         【必读】     │<br>│  目标：理解框架定位，能跑通 Hello World       │<br>│  产出：本机跑起第一个 go-zero API 服务        │<br>│  时间：半天                                   │<br>├─────────────────────────────────────────────┤<br>│  阶段二：核心（第 <span class="hljs-number">2</span>~<span class="hljs-number">4</span> 篇）      【必读】      │<br>│  目标：掌握 API<span class="hljs-symbol">/RPC</span> 开发三板斧               │<br>│  产出：一个带 JWT 认证、API 调 RPC 的项目     │<br>│  时间：<span class="hljs-number">2</span><span class="hljs-operator">-</span><span class="hljs-number">3</span> 天                                │<br>├─────────────────────────────────────────────┤<br>│  阶段三：进阶（第 <span class="hljs-number">5</span>~<span class="hljs-number">6</span> 篇）      【推荐】      │<br>│  目标：数据层 <span class="hljs-operator">+</span> 稳定性治理                   │<br>│  产出：接入 MySQL<span class="hljs-operator">/</span>Redis，具备生产级兜底能力   │<br>│  时间：<span class="hljs-number">2</span> 天                                  │<br>├─────────────────────────────────────────────┤<br>│  阶段四：实战（第 <span class="hljs-number">7</span> 篇）        【可选】      │<br>│  目标：异步化 <span class="hljs-operator">+</span> 部署上线                     │<br>│  产出：Docker<span class="hljs-symbol">/K8s</span> 部署，完成全链路闭环        │<br>│  时间：<span class="hljs-number">1</span> 天                                  │<br>└─────────────────────────────────────────────┘<br></code></pre></td></tr></table></figure>
+
+<p><strong>学习节奏建议：</strong></p>
+<ul>
+<li>完整路线：每天 1~2 篇 + 2 小时实践，一周达到中级水平</li>
+<li>快速路线：每天 2~3 篇，三天快速上手</li>
+<li>深度学习：每篇文章配合官方文档，每天 1 篇 + 半天实践</li>
+</ul>
+<h2 id="3-文章目录与学习要点"><a href="#3-文章目录与学习要点" class="headerlink" title="3. 文章目录与学习要点"></a>3. 文章目录与学习要点</h2><h3 id="📖-第-1-篇：go-zero-框架介绍与快速入门"><a href="#📖-第-1-篇：go-zero-框架介绍与快速入门" class="headerlink" title="📖 第 1 篇：go-zero 框架介绍与快速入门"></a>📖 <a href="../go-zero%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">第 1 篇：go-zero 框架介绍与快速入门</a></h3><ul>
+<li><strong>定位</strong>：系列起点，回答「go-zero 是什么、为什么选它」</li>
+<li><strong>核心知识点</strong>：框架特性、与 Gin&#x2F;Go Micro 等对比、环境搭建、goctl 安装、<code>goctl api new</code> 创建第一个服务、目录结构解析</li>
+<li><strong>动手任务</strong>：本地创建并启动一个 <code>hello</code> 服务，访问接口返回 JSON</li>
+<li><strong>前置要求</strong>：Go 1.21+ 基础语法（变量、函数、结构体、<code>net/http</code>）</li>
+</ul>
+<h3 id="📖-第-2-篇：go-zero-API-语法与项目结构（goctl）"><a href="#📖-第-2-篇：go-zero-API-语法与项目结构（goctl）" class="headerlink" title="📖 第 2 篇：go-zero API 语法与项目结构（goctl）"></a>📖 <a href="../go-zero%20API%E8%AF%AD%E6%B3%95%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%EF%BC%88goctl%EF%BC%89/">第 2 篇：go-zero API 语法与项目结构（goctl）</a></h3><ul>
+<li><strong>定位</strong>：吃透 <code>.api</code> 文件 DSL，这是 go-zero 开发的核心技能</li>
+<li><strong>核心知识点</strong>：<code>service</code>&#x2F;<code>handler</code>&#x2F;<code>type</code> 语法、参数标签（<code>path</code>&#x2F;<code>form</code>&#x2F;<code>json</code>&#x2F;<code>header</code>）、<code>validate</code> 校验、<code>@server</code> 块、goctl 高级命令（<code>goctl api go</code>&#x2F;<code>validate</code>&#x2F;<code>doc</code>）</li>
+<li><strong>动手任务</strong>：手写一个包含 GET&#x2F;POST、路径参数、表单校验的完整 <code>.api</code> 文件并生成代码</li>
+<li><strong>前置要求</strong>：第 1 篇</li>
+</ul>
+<h3 id="📖-第-3-篇：go-zero-用户认证与中间件实战（JWT）"><a href="#📖-第-3-篇：go-zero-用户认证与中间件实战（JWT）" class="headerlink" title="📖 第 3 篇：go-zero 用户认证与中间件实战（JWT）"></a>📖 <a href="../go-zero%20%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%9E%E6%88%98%EF%BC%88JWT%EF%BC%89/">第 3 篇：go-zero 用户认证与中间件实战（JWT）</a></h3><ul>
+<li><strong>定位</strong>：几乎所有业务系统的第一个真实需求</li>
+<li><strong>核心知识点</strong>：注册&#x2F;登录流程、bcrypt 密码加密、JWT 签发与校验、<code>jwt: Auth</code> 语法、自定义中间件（全局&#x2F;路由两种方式）、从 JWT 提取用户信息</li>
+<li><strong>动手任务</strong>：为服务加上注册、登录、鉴权接口，未登录访问返回 401</li>
+<li><strong>前置要求</strong>：第 1~2 篇</li>
+</ul>
+<h3 id="📖-第-4-篇：go-zero-RPC-微服务开发与服务发现"><a href="#📖-第-4-篇：go-zero-RPC-微服务开发与服务发现" class="headerlink" title="📖 第 4 篇：go-zero RPC 微服务开发与服务发现"></a>📖 <a href="../go-zero%20RPC%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%8F%91%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/">第 4 篇：go-zero RPC 微服务开发与服务发现</a></h3><ul>
+<li><strong>定位</strong>：进入真正微服务架构的关键一役</li>
+<li><strong>核心知识点</strong>：gRPC&#x2F;proto 语法、<code>goctl rpc</code> 生成代码、etcd 注册与发现原理、API 服务调用 RPC 全流程、RPC 拦截器（自定义&#x2F;日志&#x2F;限流）</li>
+<li><strong>动手任务</strong>：把用户服务拆成 <code>user-api</code> + <code>user-rpc</code>，通过 etcd 完成服务间调用</li>
+<li><strong>前置要求</strong>：第 1~3 篇，了解基本 gRPC 概念</li>
+</ul>
+<h3 id="📖-第-5-篇：go-zero-数据模型与缓存"><a href="#📖-第-5-篇：go-zero-数据模型与缓存" class="headerlink" title="📖 第 5 篇：go-zero 数据模型与缓存"></a>📖 <a href="../go-zero%20%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E7%BC%93%E5%AD%98/">第 5 篇：go-zero 数据模型与缓存</a></h3><ul>
+<li><strong>定位</strong>：补齐数据库访问层，让业务真正落库</li>
+<li><strong>核心知识点</strong>：<code>goctl model</code> 根据建表语句生成代码、<code>sqlx</code> 使用、单表&#x2F;联表 CRUD、缓存一致性（Cache Aside）、事务、缓存穿透&#x2F;击穿&#x2F;雪崩防护</li>
+<li><strong>动手任务</strong>：设计一张用户表，生成 model 代码，实现带缓存读写的接口</li>
+<li><strong>前置要求</strong>：第 4 篇，了解 MySQL 与 Redis 基本操作</li>
+</ul>
+<h3 id="📖-第-6-篇：go-zero-微服务治理（限流、熔断、链路追踪）"><a href="#📖-第-6-篇：go-zero-微服务治理（限流、熔断、链路追踪）" class="headerlink" title="📖 第 6 篇：go-zero 微服务治理（限流、熔断、链路追踪）"></a>📖 <a href="../go-zero%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%EF%BC%88%E9%99%90%E6%B5%81%E3%80%81%E7%86%94%E6%96%AD%E3%80%81%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%EF%BC%89/">第 6 篇：go-zero 微服务治理（限流、熔断、链路追踪）</a></h3><ul>
+<li><strong>定位</strong>：go-zero 最大的卖点，生产环境的稳定性保障</li>
+<li><strong>核心知识点</strong>：限流三件套（<code>MaxConns</code> 并发控制、令牌桶 <code>TokenLimiter</code>、<code>PeriodLimit</code> 滑动窗口）、自适应熔断（<code>Breaker</code>）、超时控制、降载保护、OpenTelemetry + Jaeger 链路追踪、Prometheus 指标监控</li>
+<li><strong>动手任务</strong>：为服务开启限流与熔断，配置 Jaeger 查看调用链</li>
+<li><strong>前置要求</strong>：第 4~5 篇</li>
+</ul>
+<h3 id="📖-第-7-篇：go-zero-消息队列、任务调度与部署"><a href="#📖-第-7-篇：go-zero-消息队列、任务调度与部署" class="headerlink" title="📖 第 7 篇：go-zero 消息队列、任务调度与部署"></a>📖 <a href="../go-zero%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E3%80%81%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%8E%E9%83%A8%E7%BD%B2/">第 7 篇：go-zero 消息队列、任务调度与部署</a></h3><ul>
+<li><strong>定位</strong>：生产落地收尾，异步化 + 上线</li>
+<li><strong>核心知识点</strong>：Kafka 生产者&#x2F;消费者（go-queue）、asynq 延迟任务&#x2F;定时任务、<code>goctl docker</code> 一键镜像、K8s 部署清单编写、环境变量与配置管理</li>
+<li><strong>动手任务</strong>：把「注册成功后发欢迎消息」改成异步消息，最后用 Docker 部署整个服务</li>
+<li><strong>前置要求</strong>：第 5~6 篇</li>
+</ul>
+<h2 id="4-环境准备清单"><a href="#4-环境准备清单" class="headerlink" title="4. 环境准备清单"></a>4. 环境准备清单</h2><p>学习前请确认以下环境（第 1 篇有详细安装步骤）：</p>
+<table>
+<thead>
+<tr>
+<th align="left">工具</th>
+<th align="left">版本要求</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Go</td>
+<td align="left">1.21+</td>
+<td align="left">开发语言</td>
+</tr>
+<tr>
+<td align="left">goctl</td>
+<td align="left">最新版</td>
+<td align="left">代码生成神器</td>
+</tr>
+<tr>
+<td align="left">MySQL</td>
+<td align="left">5.7+</td>
+<td align="left">业务数据存储</td>
+</tr>
+<tr>
+<td align="left">Redis</td>
+<td align="left">5.0+</td>
+<td align="left">缓存 &#x2F; 限流</td>
+</tr>
+<tr>
+<td align="left">etcd</td>
+<td align="left">3.4+</td>
+<td align="left">服务注册与发现</td>
+</tr>
+<tr>
+<td align="left">Docker</td>
+<td align="left">任意</td>
+<td align="left">中间件一键启动</td>
+</tr>
+<tr>
+<td align="left">Jaeger &#x2F; Kafka（可选）</td>
+<td align="left">-</td>
+<td align="left">链路追踪 &#x2F; 消息队列</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>偷懒方案：用 Docker Compose 一键启动 MySQL、Redis、etcd、Jaeger 等所有中间件，第 1 篇附带了完整配置。</p>
+</blockquote>
+<h2 id="5-学习建议与进度跟踪"><a href="#5-学习建议与进度跟踪" class="headerlink" title="5. 学习建议与进度跟踪"></a>5. 学习建议与进度跟踪</h2><h3 id="5-1-学习建议"><a href="#5-1-学习建议" class="headerlink" title="5.1 学习建议"></a>5.1 学习建议</h3><ol>
+<li><strong>边看边敲</strong>：不要只读代码，务必动手创建项目、运行接口，代码只有跑起来才算学会</li>
+<li><strong>善用 goctl</strong>：go-zero 是「代码生成优先」的框架，遇到重复劳动先想 goctl 能不能生成</li>
+<li><strong>按顺序学</strong>：第 2 篇的 <code>.api</code> 语法是后续所有篇目的基础，不要跳</li>
+<li><strong>对照官方文档</strong>：每篇文末都附了官方文档链接，遇到细节问题以官方为准</li>
+<li><strong>关注版本</strong>：go-zero 迭代很快，遇到与文中不一致的 API 时先 <code>goctl -v</code> 检查版本</li>
+</ol>
+<h3 id="5-2-学习进度自查表"><a href="#5-2-学习进度自查表" class="headerlink" title="5.2 学习进度自查表"></a>5.2 学习进度自查表</h3><p>打印下面的清单，完成一篇就打钩 ✅：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs tap">□ 第<span class="hljs-number"> 1 </span>篇：框架入门<br>  └─ 能用 goctl 创建项目<br>  └─ 理解 handler/logic/svc 分层<br>  └─ 能启动并访问第一个 API<br><br>□ 第<span class="hljs-number"> 2 </span>篇：API 语法<br>  └─ 能写 .api 文件定义路由<br>  └─ 掌握 path/form/json 参数标签<br>  └─ 会用 goctl 生成代码<br><br>□ 第<span class="hljs-number"> 3 </span>篇：JWT 认证<br>  └─ 实现注册登录接口<br>  └─ 能签发和校验 JWT<br>  └─ 会写自定义中间件<br><br>□ 第<span class="hljs-number"> 4 </span>篇：RPC 微服务<br>  └─ 能写 .proto 定义接口<br>  └─ 启动 etcd 并注册服务<br>  └─ API 能成功调用 RPC<br><br>□ 第<span class="hljs-number"> 5 </span>篇：数据模型<br>  └─ 用 goctl model 生成代码<br>  └─ 完成数据库 CRUD<br>  └─ 理解缓存一致性方案<br><br>□ 第<span class="hljs-number"> 6 </span>篇：微服务治理<br>  └─ 配置限流熔断<br>  └─ 接入 Jaeger 查看链路<br>  └─ 暴露 Prometheus 指标<br><br>□ 第<span class="hljs-number"> 7 </span>篇：部署实战<br>  └─ 接入 Kafka 消息队列<br>  └─ 使用 asynq 定时任务<br>  └─ 能用 Docker 部署服务<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-常见问题（FAQ）"><a href="#6-常见问题（FAQ）" class="headerlink" title="6. 常见问题（FAQ）"></a>6. 常见问题（FAQ）</h2><p><strong>Q：没有微服务经验，能直接学这个系列吗？</strong><br>A：可以。系列从单体 API 服务讲起，第 4 篇才开始引入 RPC 拆分，前 3 篇只需 Go 基础。</p>
+<p><strong>Q：必须要安装 etcd &#x2F; MySQL &#x2F; Redis 吗？</strong><br>A：前 3 篇只需要 Go 环境；第 4 篇起需要 etcd，第 5 篇起需要 MySQL&#x2F;Redis，建议提前用 Docker 装好。</p>
+<p><strong>Q：学完这个系列能达到什么水平？</strong><br>A：中级水平——能独立完成一个带认证、缓存、限流、可观测的 go-zero 微服务项目，并部署上线。</p>
+<p><strong>Q：学完之后想继续深入，往哪个方向走？</strong><br>A：见下方进阶路线。</p>
+<h2 id="7-进阶路线（中级-→-高级）"><a href="#7-进阶路线（中级-→-高级）" class="headerlink" title="7. 进阶路线（中级 → 高级）"></a>7. 进阶路线（中级 → 高级）</h2><p>完成本系列后，可向以下方向继续深入：</p>
+<ol>
+<li><strong>分布式事务</strong>：go-zero 支持的 Saga &#x2F; TCC 方案，以及 seata 集成</li>
+<li><strong>容器化进阶</strong>：K8s 弹性伸缩（HPA）、服务网格（Istio）、蓝绿发布</li>
+<li><strong>多语言网关</strong>：gRPC-Gateway、统一 API 网关层设计</li>
+<li><strong>性能调优</strong>：pprof 性能分析、GC 优化、连接池调优、压测实践</li>
+<li><strong>源码阅读</strong>：研读 go-zero 核心源码（<code>core</code> 目录下的 <code>breaker</code>、<code>limiter</code>、<code>syncx</code> 等），理解设计哲学</li>
+<li><strong>云原生</strong>：对接云厂商中间件（云 MySQL、云 Redis、消息队列托管版）</li>
+</ol>
+<h2 id="8-索引"><a href="#8-索引" class="headerlink" title="8. 索引"></a>8. 索引</h2><ul>
+<li><a href="../go-zero%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">go-zero 框架介绍与快速入门</a></li>
+<li><a href="../go-zero%20API%E8%AF%AD%E6%B3%95%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%EF%BC%88goctl%EF%BC%89/">go-zero API 语法与项目结构（goctl）</a></li>
+<li><a href="../go-zero%20%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%9E%E6%88%98%EF%BC%88JWT%EF%BC%89/">go-zero 用户认证与中间件实战（JWT）</a></li>
+<li><a href="../go-zero%20RPC%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%8F%91%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/">go-zero RPC 微服务开发与服务发现</a></li>
+<li><a href="../go-zero%20%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E7%BC%93%E5%AD%98/">go-zero 数据模型与缓存</a></li>
+<li><a href="../go-zero%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%EF%BC%88%E9%99%90%E6%B5%81%E3%80%81%E7%86%94%E6%96%AD%E3%80%81%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%EF%BC%89/">go-zero 微服务治理（限流、熔断、链路追踪）</a></li>
+<li><a href="../go-zero%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E3%80%81%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%8E%E9%83%A8%E7%BD%B2/">go-zero 消息队列、任务调度与部署</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Golang/" class="category-chain-item">Golang</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Golang/go-zero/" class="category-chain-item">go-zero</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="print-no-link">#微服务</a>
+      
+        <a href="/tags/Golang/" class="print-no-link">#Golang</a>
+      
+        <a href="/tags/go-zero/" class="print-no-link">#go-zero</a>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="print-no-link">#学习路线</a>
+      
+        <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>go-zero 学习路线（系列导读）</div>
+      <div>https://cyperlo.github.io/2026/08/18/Golang/go-zero/go-zero 学习路线/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/18/Golang/go-zero/go-zero%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="go-zero 框架介绍与快速入门">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">go-zero 框架介绍与快速入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/12/tmux/" title="tmux 安装">
+                        <span class="hidden-mobile">tmux 安装</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://cyperlo.github.io/2026/08/18/Golang/go-zero/go-zero%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/';
+          this.page.identifier = '/2026/08/18/Golang/go-zero/go-zero%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
